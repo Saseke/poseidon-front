@@ -1,0 +1,154 @@
+a {
+    color: #333;
+}
+
+.site-footer-container {
+    width: 1226px;
+    *zoom: 1;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.site-info {
+    padding: 30px 0;
+    font-size: 12px;
+    background: #fafafa;
+}
+
+.footer-links {
+    height: 192px;
+}
+
+.info-container {
+    width: 1226px;
+    height: 72px;
+    font-size: 12px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.info-container img {
+    display: inline-block;
+    float: left;
+    width: 57px;
+    height: 57px;
+    margin-right: 8px;
+}
+
+.footer-service {
+    padding: 27px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.footer-links {
+    padding: 40px 0;
+}
+
+.footer-links dl {
+    float: left;
+    width: 160px;
+    height: 112px;
+    margin: 0;
+}
+
+.footer-links dl dt {
+    margin: -1px 0 26px;
+    font-size: 14px;
+    line-height: 1.25;
+    color: #424242;
+}
+
+.footer-links dl dd {
+    margin: 10px 0 0;
+    font-size: 12px;
+}
+
+.footer-service ul li {
+    float: left;
+    width: 19.8%;
+    height: 25px;
+    border-left: 1px solid #e0e0e0;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.footer-service ul li:first-child {
+    border-left: none;
+}
+
+.col-contact {
+    float: right;
+    width: 251px;
+    height: 112px;
+    border-left: 1px solid #e0e0e0;
+    text-align: center;
+    color: #616161;
+}
+
+.footer-phone {
+    margin: 0 0 5px;
+    font-size: 22px;
+    line-height: 1;
+    color: #ff6700;
+}
+
+.col-contact p {
+    margin: 0 0 16px;
+    font-size: 12px;
+}
+
+.col-contact a {
+    border: 1px solid #ff6700;
+    background: #fff;
+    color: #ff6700;
+    width: 118px;
+    height: 28px;
+    font-size: 12px;
+    line-height: 28px;
+    display: inline-block;
+}
+
+
+.info-text {
+    float: left;
+}
+
+.info-text p {
+    margin: 0;
+    line-height: 18px;
+    color: #b0b0b0;
+}
+
+.site-info p a:hover {
+    color: #ff6700;
+}
+
+.sep {
+    margin: 0 .25em;
+    font-family: sans-serif;
+}
+
+.info-links {
+    float: left;
+    height: 28px;
+    /*margin: 4px 0 0;*/
+}
+
+.info-links img {
+    width: auto;
+    height: 28px;
+    margin-left: 0;
+}
+
+.slogan {
+    clear: both;
+    margin: 30px auto 0;
+    width: 267px;
+    height: 19px;
+    background: url(https://s01.mifile.cn/i/slogan2016.png) no-repeat center 0;
+    display: block;
+    text-align: left;
+    text-indent: -9999em;
+    overflow: hidden;
+}

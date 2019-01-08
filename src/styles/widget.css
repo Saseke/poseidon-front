@@ -1,0 +1,57 @@
+.box{
+    width:1226px;
+    margin:14px auto;
+}
+
+.box a{
+    display: block;
+}
+
+.box-list{
+    background: #5f5750;
+    font-size: 12px;
+    text-align: center;
+    width: 234px;
+    height: 170px;
+    float: left;
+}
+
+.box-list li{
+    position: relative;
+    float: left;
+    width: 70px;
+    height: 82px;
+    padding: 0 3px;
+}
+
+.box-list li a{
+    display: block;
+    padding-top: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgba(255,255,255,0.7);
+    /*transition: color .2s;*/
+}
+
+.box-list li a i{
+    display: block;
+    height: 24px;
+    margin-bottom: 4px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+
+.box-img{
+    width: 978px;
+    margin-left: 14px;
+    float: left;
+}
+
+.box-img li{
+    width: 316px;
+    height:170px;
+    float: left;
+    margin-left: 10px;
+}

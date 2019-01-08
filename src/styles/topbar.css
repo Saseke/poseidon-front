@@ -1,0 +1,54 @@
+.site-topbar{
+    position: relative;
+    z-index: 30;
+    height: 40px;
+    width:1226px;
+    font-size: 12px;
+    color: #b0b0b0;
+    background: #333;
+}
+
+#container{
+    width:1226px;
+    margin:0 auto;
+}
+
+.site-topbar ul{
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.site-topbar ul li{
+    float:left;
+}
+
+.site-topbar ul li span{
+    margin:0.5em;
+}
+
+.list1{
+    float:left;
+    display: block;
+}
+
+.list1 a,
+.list2 a{
+    color: #b0b0b0;
+}
+
+.list2{
+    display: block;
+    float: right;
+}
+
+@media screen and (min-width: 1226px) {
+    .site-topbar{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1226px) {
+    body{
+        width: 1226px;
+    }
+}
