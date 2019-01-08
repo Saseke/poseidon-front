@@ -1,0 +1,102 @@
+import React, {Component} from 'react';
+import MiddleBar from '../containers/MiddleBar';
+import Footer from '../containers/Footer';
+import TopBar from '../containers/TopBar';
+import '../styles/category.css';
+import {fetchPanel} from '../action/PanelAction';
+import ItemDetail from '../containers/ItemDetail';
+
+class Category extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      panels: {},
+      fetching: true
+    };
+  }
+
+  async componentDidMount() {
+    const panelsData = await fetchPanel(1);
+    this.setState({
+      panels: panelsData,
+      fetching: false
+    });
+  }
+
+
+  render() {
+
+    const {panels, fetching} = this.state;
+    if (fetching) {
+      return null;
+    }
+    return (
+      <div>
+        <TopBar/>
+        <MiddleBar/>
+        <div>
+          {
+            panels.map((panel, index) => (
+              <div key={index}>
+                <div className="channel-title">
+                  <h2>{panel.name}</h2>
+                </div>
+                {
+                  panel.itemDtoList.map((item, point) => (
+                    point === 1
+                      ?
+                      <div className="channel-product">
+                        <div className="product-cell">
+                          <div className="figure">
+                            <a href="">
+                              <img
+                                src="https://i8.mifile.cn/b2c-mimall-media/b8133772061204a88bc334001cd69b57.jpg?w=1708&h=868"
+                                alt=""/>
+                            </a>
+                          </div>
+                          <div className="content">
+                            <h3 className="con-title">
+                              <a href="">{item.name}</a>
+                            </h3>
+                            <p className="con-desc">{item.sellPoint}</p>
+                            <p className="con-price">
+                              <strong>{item.price}</strong>元起
+                            </p>
+                            <p className="con-link">
+                              <a href="">{'了解产品 >'}</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      : <div className="channel-product">
+                        <div className="product-cell">
+                          <div className="product-one">
+                            <div className="product-figure">
+                              <a href="">
+                                <img
+                                  src="https://i8.mifile.cn/b2c-mimall-media/24b7f3c26569ea91b68551f32109dcb1.jpg"
+                                  alt=""/>
+                              </a>
+                            </div>
+                            <h3><a href="">{item.name}</a></h3>
+                            <p className="one-desc">{item.sellPoint}</p>
+                            <p className="one-price">
+                              <strong>{item.price}</strong>元起 <del>{item.price + 100}元</del>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                  ))
+                }
+              </div>
+            ))
+          }
+        </div>
+        <Footer/>
+      </div>
+    );
+  }
+}
+
+export default Category;

@@ -53,7 +53,7 @@ class Index extends Component {
                 {
                   categories.map((categoriesArr, index) => (
                     <li key={index}>
-                      <Link to="">
+                      <Link to={`/cat/${categoriesArr[1].itemCatId}`}>
                         <p>
                           {categoriesArr.map((category, j) => (
                             <span key={j}>{category.name + ' '}</span>

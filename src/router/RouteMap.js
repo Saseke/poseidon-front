@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Index from '../components/Index';
-import Category from '../components/view/category/Category';
+import Category from '../components/Category';
 import Item from '../components/view/item/Item';
 
 class RouteMap extends Component {
