@@ -34,10 +34,15 @@
     max-width: none;
 }
 
-.channel-title,
-.channel-product{
+.channel-title{
     width:1226px;
     margin:0 auto;
+}
+
+.channel-product{
+    width:100%;
+    margin:0 auto;
+    display: block;
 }
 
 .channel-title h2,
@@ -51,6 +56,8 @@
 }
 
 .product-cell{
+    width:1226px;
+    margin:0 auto;
     position: relative;
     height: 100%;
     background: #fff;
@@ -112,10 +119,19 @@
     margin-top: 62px;
 }
 
-.product-one{
-    float:left;
+.items{
+    max-width: 1226px;
+    margin:0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+
+.product-item{
     height: 100%;
-    width: 606px;
+    width:606px;
     background: #fff;
     margin-left:7px;
     margin-bottom:4px;
