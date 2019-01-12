@@ -5,7 +5,7 @@ class MiddleBar extends Component{
     render(){
         return(
             <div className="site-middlebar">
-                <a href=""><img className="logo-icon" src="https://s01.mifile.cn/i/logo-footer.png?v2"/></a>
+                <a href="/"><img className="logo-icon" src="https://s01.mifile.cn/i/logo-footer.png?v2"/></a>
                 <div id="middle-nav">
                     <ul>
                         <li><a>小米手机</a></li>

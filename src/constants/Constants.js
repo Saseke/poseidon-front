@@ -3,7 +3,7 @@ export const REMOTE_URL = 'http://www.test.com:8080';
 
 //   商品展示请求的url
 export const ITEM_VIEW_URL = `${REMOTE_URL}/itemCat`;
-
+export const ITEM_URL = `${REMOTE_URL}/item`;
 export const PANEL_BASE_URL = `${REMOTE_URL}/panel`;
 
 // 购物车请求的url
