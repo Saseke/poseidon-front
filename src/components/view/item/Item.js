@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MiddleBar2 from "../../../containers/MiddleBar";
+import MiddleBar2 from '../../../containers/MiddleBar';
 import '../../../styles/item.css';
 
 class Item extends Component {
@@ -93,7 +93,7 @@ class Item extends Component {
                                     </div>
                                     <div className="pro-choose-prot">
                                         <div className="step-title ">选择小米提供的意外保护
-                                            <a href="" target="_blank" className="step-pro">了解意外保护 ></a>
+                                            <a href="" target="_blank" className="step-pro">了解意外保护 {'>'}</a>
                                         </div>
                                         <ul className="protect">
                                             <li>
@@ -130,7 +130,7 @@ class Item extends Component {
                                     </div>
                                     <div className="pro-choose-prot">
                                         <div className="step-title ">选择小米提供的延长保修
-                                            <a href="" target="_blank" className="step-pro">了解延长保修 ></a>
+                                            <a href="" target="_blank" className="step-pro">了解延长保修 {'>'}</a>
                                         </div>
                                         <ul className="protect">
                                             <li>
@@ -173,7 +173,7 @@ class Item extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 

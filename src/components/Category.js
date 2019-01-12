@@ -4,7 +4,7 @@ import Footer from '../containers/Footer';
 import TopBar from '../containers/TopBar';
 import '../styles/category.css';
 import {fetchPanel} from '../action/PanelAction';
-import Carousels from "../containers/Carousels";
+import Carousels from '../containers/Carousels';
 
 class Category extends Component {
 
@@ -17,7 +17,8 @@ class Category extends Component {
   }
 
   async componentDidMount() {
-    const panelsData = await fetchPanel(1);
+    let catId = this.props.match.params.cId;
+    const panelsData = await fetchPanel(catId);
     this.setState({
       panels: panelsData,
       fetching: false
