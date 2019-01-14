@@ -20,6 +20,7 @@ class Category extends Component {
   async componentDidMount() {
     let cId = this.props.match.params.cId;
     const panelsData = await fetchPanel(cId);
+
     this.setState({
       panels: panelsData,
       fetching: false
