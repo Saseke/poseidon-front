@@ -22,48 +22,134 @@
 #middle-nav{
     float: right;
     width: 80%;
+    position: relative;
 }
 
-.site-middlebar ul,
-.site-middlebar ul li{
+#middle-nav-list {
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.18);
+    background: #fff;
+    height: 229px;
+    left: 0;
+    z-index: 2;
+    display: none;
+}
+
+
+.list-container {
+    width: 1226px;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.main-list {
+    display: flex;
+    flex-flow: row;
+}
+
+.main-list li {
+    padding: 0 11px;
+    width: 204px;
+    height: 202px;
+    text-align: center;
+}
+
+.new {
+    margin: 0 auto;
+    width: 66px;
+    height: 22px;
+    line-height: 22px;
+    vertical-align: middle;
+    padding: 1px 20px;
+    border: 1px solid #ff6700;
+    color: #ff6700;
+    font-size: 12px;
+    text-align: center;
+}
+
+.not-new{
+    margin: 0 auto;
+    width: 66px;
+    height: 22px;
+    border:none;
+}
+
+.main-list li img {
+    margin-top: 10px;
+}
+
+.main-list li p {
+    margin-top: 10px;
+}
+
+.column-line {
+    width: 1px;
+    border:1px solid #c9c9c9;
+    border-left:none;
+    height: 100px;
+    margin-top: 40px;
+    margin-left:10px;
+    margin-right: 10px;
+
+}
+
+#middle-nav > ul,
+#middle-nav > ul > li {
     float: left;
-    padding:0 5px;
+    padding: 0 5px;
 }
 
-.search-box{
-    width:295px;
+.name{
+    font-size: 14px;
+}
+
+.price {
+    margin: 0;
+    color: #ff6709;
+    font-size: 14px;
+}
+
+.search-box {
+    width: 295px;
     height: 50px;
     float: right;
     line-height: 50px;
     margin-top: 25px;
+    position: relative;
 }
 
-#search{
-    margin-top: -5px;
+#search {
+    margin-top: -1px;
     height: 50px;
-    width:245px;
+    width: 245px;
     padding-left: 10px;
     vertical-align: middle;
 }
 
-.search-icon{
-    width:50px;
-    height:50px;
+.search-icon {
+    width: 50px;
+    height: 50px;
     float: right;
-    border:1px darkorange solid;
+    margin-top:2px;
+    background-color: #FFFFFF;
+    border: 1px #c9c9c9 solid;
+    border-left: none;
 }
 
-#middle-nav input:focus{
-    color:#333333;
-    outline:none;
-    border: 1px  darkorange solid;
+#middle-nav input:focus {
+    color: #333333;
+    outline: none;
+    border: 1px darkorange solid;
 }
 
-#middle-nav button:focus{
-    outline:none;
-    border: 1px  darkorange solid;
+#middle-nav button:focus {
+    outline: none;
 }
 
-#middle-nav ul{
+#middle-nav ul {
     margin-left: -50px;
 }
+

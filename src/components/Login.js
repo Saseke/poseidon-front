@@ -14,7 +14,6 @@ class Login extends Component {
   handelChange(e) {
     this.setState({
       username: e.target.value,
-      password: e.target.value
     });
   }
 

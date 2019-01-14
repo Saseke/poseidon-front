@@ -5,7 +5,6 @@ export async function fetchLogin(user) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user)
     })
   }).then(rep => {
     console.log(rep);
