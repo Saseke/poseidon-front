@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../styles/login.css';
-import {fetchLogin} from '../action/LoginAction';
+import {fetchToken} from '../action/LoginAction';
 
 class Login extends Component {
   constructor(props) {
@@ -11,16 +11,22 @@ class Login extends Component {
     };
   }
 
-  handelChange(e) {
+  handelChange = name => event => {
+    const value = event.target.value;
     this.setState({
-      username: e.target.value,
+      [name]: value
     });
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    fetchLogin(this.state);
   };
+
+  async handleSubmit(e) {
+    e.preventDefault();
+    const flag = await fetchToken(this.state);
+    if (flag) {
+      alert('登录成功');
+    } else {
+      alert('登录失败,请重试');
+    }
+  }
 
   render() {
     return (
@@ -45,34 +51,34 @@ class Login extends Component {
             <div id="list">
               <div id='account-area'>
                 {/*<form id="form1">*/}
-                  <input type="text" placeholder="邮箱/手机号码/小米ID" id="username" onChange={this.handelChange.bind(this)}/>
-                  <input type="password" placeholder="密码" id="password" onChange={this.handelChange.bind(this)}/>
-                  <div className="err_tip" style={{display: 'none'}}>
-                    <div>
-                      <em className="icon_error">
-                      </em>
-                      <span className="error-con">用户名不正确</span>
-                    </div>
+                <input type="text" placeholder="邮箱/手机号码/小米ID" id="username" onChange={this.handelChange('username')}/>
+                <input type="password" placeholder="密码" id="password" onChange={this.handelChange('password')}/>
+                <div className="err_tip" style={{display: 'none'}}>
+                  <div>
+                    <em className="icon_error">
+                    </em>
+                    <span className="error-con">用户名不正确</span>
                   </div>
-                  <div className="err_tip" style={{display: 'none'}}>
-                    <div>
-                      <em className="icon_error">
-                      </em>
-                      <span className="error-con">密码不正确</span>
-                    </div>
+                </div>
+                <div className="err_tip" style={{display: 'none'}}>
+                  <div>
+                    <em className="icon_error">
+                    </em>
+                    <span className="error-con">密码不正确</span>
                   </div>
-                  <button onClick={this.handleSubmit} className="login-btn">登录</button>
-                  <div className="others">
-                    <span className="ChangeLoginType">手机短信登录/注册</span>
-                    <div className="RegisterAndForget">
-                      <a href="#">立即注册</a>
-                      <a>|</a>
-                      <a href="#">忘记密码?</a>
-                    </div>
+                </div>
+                <button onClick={this.handleSubmit.bind(this)} className="login-btn">登录</button>
+                <div className="others">
+                  <span className="ChangeLoginType">手机短信登录/注册</span>
+                  <div className="RegisterAndForget">
+                    <a href="#">立即注册</a>
+                    <a>|</a>
+                    <a href="#">忘记密码?</a>
                   </div>
-                  <div className="otherLoginType">
-                    <legend align="center" className="other-txt">其他方式登录</legend>
-                  </div>
+                </div>
+                <div className="otherLoginType">
+                  <legend align="center" className="other-txt">其他方式登录</legend>
+                </div>
                 {/*</form>*/}
                 {/*<form className="hide" id="form2">*/}
                 {/*/!*<div class="areacode">+86</div>*!/*/}

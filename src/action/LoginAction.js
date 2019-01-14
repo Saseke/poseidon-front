@@ -1,13 +1,24 @@
-export async function fetchLogin(user) {
-  return await fetch('http://101.7.151.202:8769/auth', {
+export async function fetchToken(user) {
+  return await fetch('http://localhost:8769/auth', {
+    method: 'post',
+    mode: 'cors',
     headers: new Headers({
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-  }).then(rep => {
-    console.log(rep);
-    return rep.headers;
+
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify(user)
+  }).then(response => {
+    if (response.ok) {
+      let token = response.headers.get('Authorization');
+      let curUser = response.headers.get('cur');
+      localStorage.setItem('token', token);
+      localStorage.setItem('curUser', curUser);
+    } else {
+      console.log('user login failed');
+    }
+    return response.ok;
+  }).catch(error => {
+    console.error(error);
   });
 }

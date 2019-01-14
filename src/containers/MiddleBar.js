@@ -82,6 +82,7 @@ class MiddleBar extends Component {
 
 
             </ul>
+
           </div>
         </div>
       </div>

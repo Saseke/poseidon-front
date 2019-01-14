@@ -141,7 +141,7 @@ class Index extends Component {
                   <div className="item-main-list">
                     <div className="item-first">
                       <Link to="/detail">
-                        <img src="https://i1.mifile.cn/a4/xmad_15407792204208_jtrJc.jpg" widht="100%"
+                        <img src="https://i1.mifile.cn/a4/xmad_15407792204208_jtrJc.jpg" width="100%"
                              height="100%" alt=""/>
                       </Link>
                     </div>
