@@ -10,6 +10,7 @@ import '../styles/indexContent.css';
 import {fetchCategory, fetchPanelByRemark} from '../action/CategoryAction';
 import {Link} from 'react-router-dom';
 import '../styles/panel.css';
+import $ from 'jquery';
 
 class Index extends Component {
 
@@ -30,6 +31,52 @@ class Index extends Component {
       panels: panelsData,
       fetching: false
     });
+
+
+    const List = $('#middle-nav-list');
+    const LeftMenu = $('#site-left-menu-list');
+    const Line = $('.column-line');
+    const li = $('#site-left-menu-list li');
+    $('#list3>.item-list').hover(function () {
+      List.css('display', 'block');
+    }, function () {
+      List.css('display', 'none');
+      List.hover(function () {
+        List.css('display', 'block');
+      }, function () {
+        List.css('display', 'none');
+      });
+    });
+
+    $('#site-left-menu>li').hover(function () {
+      LeftMenu.css('display', 'block');
+    }, function () {
+      LeftMenu.css('display', 'none');
+      LeftMenu.hover(function () {
+        LeftMenu.css('display', 'block');
+      }, function () {
+        LeftMenu.css('display', 'none');
+      });
+    });
+
+    let width = Math.ceil(li.length / 6) * (li.eq(0).width()+36);
+    if (width <= 992) {
+      LeftMenu.css({
+        'width':width,
+        'box-shadow':'0 0 5px rgba(0, 0, 0, 0.36)'
+      });
+    } else {
+      LeftMenu.css({
+        'width': '992px',
+        'overflow': 'hidden',
+        'box-shadow':' 0 3px 10px rgba(0, 0, 0, 0.36)'
+      });
+    }
+    if (Line.length>6) {
+      Line.eq(5).css('display','none');
+    }else{
+      Line.eq(Line.length-1).css('display','none');
+    }
   }
 
   render() {
@@ -48,7 +95,7 @@ class Index extends Component {
         <div id="main">
           <div id="main-img">
             <div className="site-left">
-              <ul className="site-left-menu">
+              <ul className="site-left-menu" id="site-left-menu">
 
                 {
                   categories.map((categoriesArr, index) => (
@@ -65,6 +112,16 @@ class Index extends Component {
                   ))
                 }
               </ul>
+              <div id="site-left-menu-list">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <img className="thumb" src="https://i1.mifile.cn/f/i/g/2015/cn-index/mix3-80.png" alt=""/>
+                        <span className="text">小米MIX 3</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
             <Carousels/>
           </div>

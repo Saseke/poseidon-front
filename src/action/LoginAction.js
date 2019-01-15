@@ -3,6 +3,7 @@ export async function fetchToken(user) {
     method: 'post',
     mode: 'cors',
     headers: new Headers({
+
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }),
