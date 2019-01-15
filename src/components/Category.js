@@ -3,7 +3,7 @@ import MiddleBar from '../containers/MiddleBar';
 import Footer from '../containers/Footer';
 import TopBar from '../containers/TopBar';
 import '../styles/category.css';
-import {fetchPanel} from '../action/PanelAction';
+import {fetchPanelFromCats} from '../action/PanelAction';
 import Carousels from '../containers/Carousels';
 
 class Category extends Component {
@@ -20,7 +20,7 @@ class Category extends Component {
   async componentDidMount() {
     let catId1 = this.props.match.params.catId1;
     let catId2 = this.props.match.params.catId2;
-    const panelsData = await fetchPanel(catId1, catId2);
+    const panelsData = await fetchPanelFromCats(catId1, catId2, 7);
 
     this.setState({
       panels: panelsData,

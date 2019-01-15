@@ -18,13 +18,23 @@ class Index extends Component {
     super(props);
     this.state = {
       categories: {},
+      items: [],
       panels: {},
       fetching: true
     };
   }
 
+  handleChange = index => event => {
+    const data = this.state.categories[index];
+    let items = [...data[0].items, ...data[1].items];
+    console.log(items);
+    this.setState({
+      items: items
+    });
+  };
+
   async componentDidMount() {
-    const categoriesData = await fetchCategory(20);
+    const categoriesData = await fetchCategory(20, 12);
     const panelsData = await fetchPanelByRemark('index');
     this.setState({
       categories: categoriesData,
@@ -34,9 +44,8 @@ class Index extends Component {
 
 
     const List = $('#middle-nav-list');
-    const LeftMenu = $('#site-left-menu-list');
-    const Line = $('.column-line');
-    const li = $('#site-left-menu-list li');
+
+
     $('#list3>.item-list').hover(function () {
       List.css('display', 'block');
     }, function () {
@@ -48,39 +57,10 @@ class Index extends Component {
       });
     });
 
-    $('#site-left-menu>li').hover(function () {
-      LeftMenu.css('display', 'block');
-    }, function () {
-      LeftMenu.css('display', 'none');
-      LeftMenu.hover(function () {
-        LeftMenu.css('display', 'block');
-      }, function () {
-        LeftMenu.css('display', 'none');
-      });
-    });
-
-    let width = Math.ceil(li.length / 6) * (li.eq(0).width()+36);
-    if (width <= 992) {
-      LeftMenu.css({
-        'width':width,
-        'box-shadow':'0 0 5px rgba(0, 0, 0, 0.36)'
-      });
-    } else {
-      LeftMenu.css({
-        'width': '992px',
-        'overflow': 'hidden',
-        'box-shadow':' 0 3px 10px rgba(0, 0, 0, 0.36)'
-      });
-    }
-    if (Line.length>6) {
-      Line.eq(5).css('display','none');
-    }else{
-      Line.eq(Line.length-1).css('display','none');
-    }
   }
 
   render() {
-    const {categories, panels, fetching} = this.state;
+    const {categories, panels, items, fetching} = this.state;
     if (fetching) {
       return (
         <div>
@@ -99,7 +79,7 @@ class Index extends Component {
 
                 {
                   categories.map((categoriesArr, index) => (
-                    <li key={index}>
+                    <li key={index} onMouseEnter={this.handleChange(index)}>
                       <Link to={`/cat/${categoriesArr[0].itemCatId}/${categoriesArr[1].itemCatId}`}>
                         <p>
                           {categoriesArr.map((category, j) => (
@@ -114,12 +94,16 @@ class Index extends Component {
               </ul>
               <div id="site-left-menu-list">
                 <ul>
-                  <li>
-                    <a href="#">
-                      <img className="thumb" src="https://i1.mifile.cn/f/i/g/2015/cn-index/mix3-80.png" alt=""/>
-                        <span className="text">小米MIX 3</span>
-                    </a>
-                  </li>
+                  {
+                    items.map((item, index) => (
+                      <li key={index}>
+                        <a href="#">
+                          <img className="thumb" src={item.image} alt=""/>
+                          <span className="text">{item.name}</span>
+                        </a>
+                      </li>
+                    ))
+                  }
                 </ul>
               </div>
             </div>

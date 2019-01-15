@@ -11,7 +11,7 @@ class Login extends Component {
     };
   }
 
-  handelChange = name => event => {
+  handleChange = name => event => {
     const value = event.target.value;
     this.setState({
       [name]: value
@@ -51,8 +51,8 @@ class Login extends Component {
             <div id="list">
               <div id='account-area'>
                 {/*<form id="form1">*/}
-                <input type="text" placeholder="邮箱/手机号码/小米ID" id="username" onChange={this.handelChange('username')}/>
-                <input type="password" placeholder="密码" id="password" onChange={this.handelChange('password')}/>
+                <input type="text" placeholder="邮箱/手机号码/小米ID" id="username" onChange={this.handleChange('username')}/>
+                <input type="password" placeholder="密码" id="password" onChange={this.handleChange('password')}/>
                 <div className="err_tip" style={{display: 'none'}}>
                   <div>
                     <em className="icon_error">
