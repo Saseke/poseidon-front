@@ -18,8 +18,9 @@ class Category extends Component {
   }
 
   async componentDidMount() {
-    let cId = this.props.match.params.cId;
-    const panelsData = await fetchPanel(cId);
+    let catId1 = this.props.match.params.catId1;
+    let catId2 = this.props.match.params.catId2;
+    const panelsData = await fetchPanel(catId1, catId2);
 
     this.setState({
       panels: panelsData,

@@ -13,7 +13,7 @@ class RouteMap extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={Index}/>
-            <Route path="/cat/:cId" component={Category}/>
+            <Route path="/cat/:catId1/:catId2" component={Category}/>
             <Route path="/detail/:cId" component={Item}/>
             <Route path="/login" component={Login}/>
           </Switch>
