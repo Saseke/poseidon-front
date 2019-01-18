@@ -1,4 +1,4 @@
-export const REMOTE_URL = 'http://localhost:8080';
+export const REMOTE_URL = 'http://www.test.com:8080';
 
 
 //   商品展示请求的url

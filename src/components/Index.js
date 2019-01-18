@@ -26,11 +26,25 @@ class Index extends Component {
 
   handleChange = index => event => {
     const data = this.state.categories[index];
+    const LeftMenu = $('#site-left-menu-list');
     let items = [...data[0].items, ...data[1].items];
     console.log(items);
     this.setState({
       items: items
     });
+    let width = Math.ceil(items.length / 6) *248;
+    if (width <= 992) {
+      LeftMenu.css({
+        'width': width+'px',
+        'box-shadow': '0 0 5px rgba(0, 0, 0, 0.36)'
+      });
+    } else {
+      LeftMenu.css({
+        'width': '992px',
+        'overflow': 'hidden',
+        'box-shadow': ' 0 3px 10px rgba(0, 0, 0, 0.36)'
+      });
+    }
   };
 
   async componentDidMount() {
@@ -43,21 +57,20 @@ class Index extends Component {
     });
 
 
-    const List = $('#middle-nav-list');
+    const LeftMenu = $('#site-left-menu-list');
 
-
-    $('#list3>.item-list').hover(function () {
-      List.css('display', 'block');
+    $('#site-left-menu > li').hover(function () {
+      LeftMenu.css('display', 'block');
     }, function () {
-      List.css('display', 'none');
-      List.hover(function () {
-        List.css('display', 'block');
+      LeftMenu.css('display', 'none');
+      LeftMenu.hover(function () {
+        LeftMenu.css('display', 'block');
       }, function () {
-        List.css('display', 'none');
+        LeftMenu.css('display', 'none');
       });
     });
-
   }
+
 
   render() {
     const {categories, panels, items, fetching} = this.state;
@@ -93,7 +106,7 @@ class Index extends Component {
                 }
               </ul>
               <div id="site-left-menu-list">
-                <ul>
+                <ul >
                   {
                     items.map((item, index) => (
                       <li key={index}>

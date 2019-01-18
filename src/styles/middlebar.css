@@ -50,8 +50,12 @@
     flex-flow: row;
 }
 
+.itemBox{
+    display: flex;
+    flex-direction: row;
+}
+
 .main-list li {
-    padding: 0 11px;
     width: 204px;
     height: 202px;
     text-align: center;
