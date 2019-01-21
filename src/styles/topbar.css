@@ -43,6 +43,18 @@
     float: right;
 }
 
+.cart{
+    position: relative;
+    width:120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #b0b0b0;
+    background: #424242;
+    margin-left: 20px;
+}
+
+
 @media screen and (min-width: 1226px) {
     .site-topbar{
         width: 100%;

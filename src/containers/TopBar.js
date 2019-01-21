@@ -24,7 +24,7 @@ class TopBar extends Component {
             <li><Link to="/login">登录</Link><span>|</span></li>
             <li><Link to="/register">注册</Link><span>|</span></li>
             <li><Link to="/login">消息通知</Link></li>
-            <li><Link to="/login">购物车</Link></li>
+            <li className='cart'><Link to="/cart">购物车</Link></li>
             <div className="clear"></div>
           </ul>
           <div className="clear"></div>

@@ -5,6 +5,7 @@ import Category from '../components/Category';
 
 import Item from '../components/Item';
 import Login from '../components/Login';
+import Cart from '../components/Cart';
 
 class RouteMap extends Component {
   render() {
@@ -16,6 +17,7 @@ class RouteMap extends Component {
             <Route path="/cat/:catId1/:catId2" component={Category}/>
             <Route path="/detail/:cId" component={Item}/>
             <Route path="/login" component={Login}/>
+            <Route path="/cart" component={Cart}/>
           </Switch>
         </div>
       </BrowserRouter>
