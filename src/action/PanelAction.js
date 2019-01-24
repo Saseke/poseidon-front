@@ -21,7 +21,7 @@ export async function fetchPanel(catId) {
 
 // 点击首页的根分类,显示每行两个分类下的具体内容
 export async function fetchPanelFromCats(catId1, catId2, itemLimit) {
-  return await fetch(`${CAT_PANEL_ITEMS_URL}/${itemLimit};catId=${catId1},${catId2}`, {
+  return await fetch(`${CAT_PANEL_ITEMS_URL}/${catId1}/${catId2}/${itemLimit}`, {
     headers: new Headers({
       'Content-Type': 'application/json',
     }),
