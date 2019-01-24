@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MiddleBar2 from '../containers/MiddleBar';
+import MiddleBar2 from './MiddleBar';
 import '../styles/item.css';
 import {fetchItem} from '../action/ItemAction';
 
@@ -15,7 +15,7 @@ class Item extends Component {
 
   async componentDidMount() {
     let itemId = this.props.match.params.itemId;
-    const itemData = await fetchItem(itemId);
+    const itemData = await fetchItem(itemId, 1);
     this.setState({
       item: itemData,
       fetching: false

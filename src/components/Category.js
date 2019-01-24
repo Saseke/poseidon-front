@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import MiddleBar from '../containers/MiddleBar';
+import MiddleBar from './MiddleBar';
 import Footer from '../containers/Footer';
 import TopBar from '../containers/TopBar';
 import '../styles/category.css';
-import {fetchPanelFromCats} from '../action/PanelAction';
+import {fetchPanelByCatIds} from '../action/PanelAction';
 import Carousels from '../containers/Carousels';
 
 class Category extends Component {
@@ -18,9 +18,16 @@ class Category extends Component {
   }
 
   async componentDidMount() {
-    let catId1 = this.props.match.params.catId1;
-    let catId2 = this.props.match.params.catId2;
-    const panelsData = await fetchPanelFromCats(catId1, catId2, 7);
+    let type = this.props.match.params.type;
+    let panelsData;
+    if (type === 'cat') {
+      let catId1 = this.props.match.params.catId1;
+      let catId2 = this.props.match.params.catId2;
+      panelsData = await fetchPanelByCatIds(catId1, catId2, 7);
+    } else if (type === 'panel') {
+      let panelId = this.props.match.params.panelId;
+      alert(panelId);
+    }
 
     this.setState({
       panels: panelsData,

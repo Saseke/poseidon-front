@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../styles/middlebar.css';
-import {fetchCategoriesWithItems} from '../action/CategoryAction';
+import {fetchNavCategoriesWithItems} from '../action/CategoryAction';
 import $ from 'jquery';
 
 class MiddleBar extends Component {
@@ -14,7 +14,7 @@ class MiddleBar extends Component {
   }
 
   async componentDidMount() {
-    const categoryDtoData = await fetchCategoriesWithItems('nav', 10, 6);
+    const categoryDtoData = await fetchNavCategoriesWithItems(10, 6);
     this.setState({
       categoriesDto: categoryDtoData,
       fetching: false
@@ -80,12 +80,12 @@ class MiddleBar extends Component {
 
               {
                 items.map((item, index) => (
-                  <div className="itemBox">
+                  <div key={index} className="itemBox">
                     <li>
                       <div className="new"> 新品</div>
                       {/*如果不是新品*/}
                       {/*<div className='not-new></div>'*/}
-                      <a href="#">
+                      <a href={`/item/${item.itemId}`}>
                         <img src={item.image} alt={item.name} width="160"
                              height="110"/>
                       </a>

@@ -1,9 +1,9 @@
-export async function fetchToken(user) {
-  return await fetch('http://localhost:8769/auth', {
-    method: 'post',
-    mode: 'cors',
-    headers: new Headers({
+import {AUTH_SERVICE_URL} from '../constants/Constants';
 
+export async function fetchToken(user) {
+  return await fetch(`${AUTH_SERVICE_URL}`, {
+    method: 'post',
+    headers: new Headers({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }),
