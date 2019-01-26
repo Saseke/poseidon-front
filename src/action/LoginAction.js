@@ -1,5 +1,5 @@
 export async function fetchToken(user) {
-  return await fetch('http://localhost:8769/auth', {
+  return await fetch('http://www.test.com:8769/auth', {
     method: 'post',
     mode: 'cors',
     headers: new Headers({

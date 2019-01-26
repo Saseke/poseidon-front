@@ -378,6 +378,7 @@ body{
 }
 
 .change-goods-num .num{
+    margin-left: 2px;
     width: 72px;
     height:36px;
     border:none;
