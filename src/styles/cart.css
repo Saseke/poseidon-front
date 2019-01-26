@@ -188,12 +188,13 @@ body{
     background: #ff6700;
     border: 1px solid #ff6700;
     height: 28px;
-    line-height: 28px;
 }
 
 .addToCar a{
     color:#fff;
     font-size: 12px;
+    line-height: 28px;
+    vertical-align: middle;
 }
 
 .cart-box{
@@ -225,6 +226,7 @@ body{
 }
 
 .back-shopping{
+    color:#757575;
     line-height: 50px;
     margin-left: 32px;
 }
@@ -377,13 +379,16 @@ body{
     cursor: pointer;
 }
 
+
+
 .change-goods-num .num{
-    margin-left: 2px;
+    margin-left: 1px;
     width: 72px;
     height:36px;
     border:none;
     float:left;
     text-align: center;
+    outline:none;
 }
 
 .item-box .col-total{

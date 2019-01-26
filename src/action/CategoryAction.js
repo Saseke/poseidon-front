@@ -1,27 +1,10 @@
-import {ITEM_CAT_ROOT_URL, ITEM_PANEL_REMARK_URL, ITEM_VIEW_URL} from '../constants/Constants';
+import {ITEM_CAT_NAV_WITH_ITEMS, ITEM_CAT_ROOT_WITH_ITEMS, ITEM_VIEW_URL} from '../constants/Constants';
 
-export async function fetchCategory(catNum, itemNum) {
-  return await fetch(`${ITEM_CAT_ROOT_URL}/${catNum}/${itemNum}`, {
-    headers: new Headers({
-      'Content-Type': 'application/json',
-    }),
-  }).then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      return new Error('请求错误');
-    }
-  }).then(json => {
-    return json.data;
-  })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
-
-export async function fetchPanelByRemark(remark) {
-  return await fetch(`${ITEM_PANEL_REMARK_URL}/${remark}`, {
+/**
+ * fetch data of root categories with items
+ */
+export async function fetchRootCategoriesWithItems(catNum, itemNum) {
+  return await fetch(`${ITEM_CAT_ROOT_WITH_ITEMS}/${catNum}/${itemNum}`, {
     headers: new Headers({
       'Content-Type': 'application/json',
     }),
@@ -41,10 +24,10 @@ export async function fetchPanelByRemark(remark) {
 
 
 /**
- * 查询首页分类(包含部分商品信息)
+ * fetch data of nav categories with items
  */
-export async function fetchCategoriesWithItems(remark, catNum, itemNum) {
-  return await fetch(`${ITEM_VIEW_URL}/${remark}/${catNum}/${itemNum}`, {
+export async function fetchNavCategoriesWithItems(catNum, itemNum) {
+  return await fetch(`${ITEM_CAT_NAV_WITH_ITEMS}/${catNum}/${itemNum}`, {
     headers: new Headers({
       'Content-Type': 'application/json',
     }),

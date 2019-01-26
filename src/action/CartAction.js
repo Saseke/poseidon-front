@@ -1,12 +1,7 @@
-import {ITEM} from '../constants/Constants';
+import {CART} from '../constants/Constants';
 
-/**
- * fetch data depend on item id
- * @param itemId item id
- * @param blob  boolean including blob (0 or 1)
- */
-export async function fetchItem(itemId, blob) {
-  return await fetch(`${ITEM}/${itemId}/${blob}`, {
+export async function fetchCartByUserName(name) {
+  return await fetch(`${CART}/list/${name}`, {
     headers: new Headers({
       'Content-Type': 'application/json',
     }),

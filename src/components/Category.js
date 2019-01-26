@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import MiddleBar from '../containers/MiddleBar';
+import MiddleBar from './MiddleBar';
 import Footer from '../containers/Footer';
 import TopBar from '../containers/TopBar';
 import '../styles/category.css';
-import {fetchPanelFromCats} from '../action/PanelAction';
+import {fetchPanelByCatIds, fetchPanelWithItemsByPanelId} from '../action/PanelAction';
 import Carousels from '../containers/Carousels';
 
 class Category extends Component {
@@ -12,20 +12,29 @@ class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      panels: {},
+      panels: null,
       fetching: true
     };
   }
 
   async componentDidMount() {
-    let catId1 = this.props.match.params.catId1;
-    let catId2 = this.props.match.params.catId2;
-    const panelsData = await fetchPanelFromCats(catId1, catId2, 7);
+    let type = this.props.match.params.type;
+    let panelsData;
+    if (type === 'cat') {
+      let catId1 = this.props.match.params.id1;
+      let catId2 = this.props.match.params.id2;
+      panelsData = await fetchPanelByCatIds(catId1, catId2, 7);
+    } else if (type === 'panel') {
+      let panelId = this.props.match.params.id1;
+      panelsData = await fetchPanelWithItemsByPanelId(panelId);
+      panelsData = [panelsData];
+    }
 
     this.setState({
       panels: panelsData,
       fetching: false
     });
+    console.log(this.state.panels);
   }
 
 

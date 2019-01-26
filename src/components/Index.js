@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MiddleBar from '../containers/MiddleBar';
+import MiddleBar from './MiddleBar';
 import Carousels from '../containers/Carousels';
 import Widget from '../containers/Widget';
 import Banner from '../containers/Banner';
@@ -7,10 +7,11 @@ import TopBar from '../containers/TopBar';
 import Footer from '../containers/Footer';
 import '../styles/contain.css';
 import '../styles/indexContent.css';
-import {fetchCategory, fetchPanelByRemark} from '../action/CategoryAction';
 import {Link} from 'react-router-dom';
 import '../styles/panel.css';
 import $ from 'jquery';
+import {fetchRootCategoriesWithItems} from '../action/CategoryAction';
+import {fetchPanelByRemark} from '../action/PanelAction';
 
 class Index extends Component {
 
@@ -32,10 +33,11 @@ class Index extends Component {
     this.setState({
       items: items
     });
-    let width = Math.ceil(items.length / 6) *248;
+    // what are you put code there
+    let width = Math.ceil(items.length / 6) * 248;
     if (width <= 992) {
       LeftMenu.css({
-        'width': width+'px',
+        'width': width + 'px',
         'box-shadow': '0 0 5px rgba(0, 0, 0, 0.36)'
       });
     } else {
@@ -48,8 +50,8 @@ class Index extends Component {
   };
 
   async componentDidMount() {
-    const categoriesData = await fetchCategory(20, 12);
-    const panelsData = await fetchPanelByRemark('index');
+    const categoriesData = await fetchRootCategoriesWithItems(20, 12);
+    const panelsData = await fetchPanelByRemark('index', 2, 8);
     this.setState({
       categories: categoriesData,
       panels: panelsData,
@@ -93,7 +95,7 @@ class Index extends Component {
                 {
                   categories.map((categoriesArr, index) => (
                     <li key={index} onMouseEnter={this.handleChange(index)}>
-                      <Link to={`/cat/${categoriesArr[0].itemCatId}/${categoriesArr[1].itemCatId}`}>
+                      <Link to={`/form/cat/${categoriesArr[0].itemCatId}/${categoriesArr[1].itemCatId}`}>
                         <p>
                           {categoriesArr.map((category, j) => (
                             <span key={j}>{category.name + ' '}</span>
@@ -106,11 +108,11 @@ class Index extends Component {
                 }
               </ul>
               <div id="site-left-menu-list">
-                <ul >
+                <ul>
                   {
                     items.map((item, index) => (
                       <li key={index}>
-                        <a href="#">
+                        <a href={`/item/${item.itemId}`}>
                           <img className="thumb" src={item.image} alt=""/>
                           <span className="text">{item.name}</span>
                         </a>
@@ -132,7 +134,7 @@ class Index extends Component {
                   <div className="home-hd">
                     <h2>{panel.name}</h2>
                     <div className="more-item">
-                      <Link to="/type">查看全部</Link>
+                      <Link to={`/form/panel/${panel.panelId}`}>查看全部</Link>
                     </div>
                   </div>
                   <div className="item-main-list">

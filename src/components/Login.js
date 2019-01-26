@@ -22,7 +22,7 @@ class Login extends Component {
     e.preventDefault();
     const flag = await fetchToken(this.state);
     if (flag) {
-      alert('登录成功');
+      window.location.href = '/';
     } else {
       alert('登录失败,请重试');
     }
