@@ -26,7 +26,7 @@ export const ITEM_PANEL_REMARK_URL = `${PANEL}/re`;
 
 // 购物车服务
 export const WEB_CART_SERVICE = `${GATEWAY_URL}/cart`;
-
+export const CART = `${WEB_CART_SERVICE}/itemCart`;
 
 // member service
 export const MEMBER_SERVICE = `${GATEWAY_URL}/member`;

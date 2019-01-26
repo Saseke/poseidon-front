@@ -14,8 +14,8 @@ class RouteMap extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={Index}/>
-            <Route path="/form/:type/:panelId" component={Category}/>
-            <Route path="/form/:type/:catId1/:catId2" component={Category}/>
+            <Route path="/form/:type/:id1/:id2?" component={Category}/>
+            {/*<Route path="/form/:type/:catId1/:catId2" component={Category}/>*/}
             <Route path="/item/:itemId" component={Item}/>
             <Route path="/login" component={Login}/>
             <Route path="/cart" component={Cart}/>
