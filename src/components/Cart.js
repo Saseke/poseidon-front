@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import 'antd/dist/antd.css';
 import { Modal} from 'antd';
 import '../styles/cart.css';
 import Footer from '../containers/Footer';
 import {fetchCartByUserName} from '../action/CartAction';
-
+import '../styles/antd-confirm.css';
 const confirm = Modal.confirm;
 
 function showConfirm() {
