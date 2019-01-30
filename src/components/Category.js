@@ -66,7 +66,7 @@ class Category extends Component {
                         <div className="channel-product">
                           <div className="product-cell">
                             <div className="figure">
-                              <a href="">
+                              <a href="/">
                                 <img
                                   src="https://i8.mifile.cn/b2c-mimall-media/b8133772061204a88bc334001cd69b57.jpg?w=1708&h=868"
                                   alt=""/>
@@ -74,14 +74,14 @@ class Category extends Component {
                             </div>
                             <div className="content">
                               <h3 className="con-title">
-                                <a href="">{item.name}</a>
+                                <a href="/">{item.name}</a>
                               </h3>
                               <p className="con-desc">{item.sellPoint}</p>
                               <p className="con-price">
                                 <strong>{item.price}</strong>元起
                               </p>
                               <p className="con-link">
-                                <a href="">{'了解产品 >'}</a>
+                                <a href="/">{'了解产品 >'}</a>
                               </p>
                             </div>
                           </div>

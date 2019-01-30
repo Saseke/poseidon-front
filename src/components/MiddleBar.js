@@ -60,7 +60,7 @@ class MiddleBar extends Component {
               {
                 categoriesDto.map((categoryData, index) => (
                   <li onMouseEnter={this.handleChange(index)} key={index} className="item-list">
-                    <a>{categoryData.name}</a></li>
+                    <a href='/'>{categoryData.name}</a></li>
                 ))
               }
             </ul>

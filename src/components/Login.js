@@ -32,19 +32,19 @@ class Login extends Component {
     return (
       <div className='wrapper'>
         <div className="header">
-          <a href="#" className="logo"> </a>
+          <a href="/" className="logo"> </a>
         </div>
 
         <div className="contain">
-          <a className="banner" id="banner"> </a>
+          <a href='/' className="banner" id="banner"> </a>
           <div className="login">
             <div className="login-mode" id="login-mode">
-              <a id="account-login" className="color">
+              <a href='/' id="account-login" className="color">
                 账号登录
               </a>
               <span className="line">
               </span>
-              <a id="qr-login">
+              <a href='/' id="qr-login">
                 扫码登录
               </a>
             </div>
@@ -71,9 +71,9 @@ class Login extends Component {
                 <div className="others">
                   <span className="ChangeLoginType">手机短信登录/注册</span>
                   <div className="RegisterAndForget">
-                    <a href="#">立即注册</a>
-                    <a>|</a>
-                    <a href="#">忘记密码?</a>
+                    <a href="/">立即注册</a>
+                    <a href='/'>|</a>
+                    <a href="/">忘记密码?</a>
                   </div>
                 </div>
                 <div className="otherLoginType">
@@ -101,16 +101,16 @@ class Login extends Component {
         <div className="footer">
           <p className="sub-nav">
             <ul className="lang-select-list">
-              <li><a href="#">简体</a><span>|</span></li>
-              <li><a href="#">繁体</a><span>|</span></li>
-              <li><a href="#">English</a><span>|</span></li>
-              <li><a href="#">FAQ</a><span>|</span></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="/">简体</a><span>|</span></li>
+              <li><a href="/">繁体</a><span>|</span></li>
+              <li><a href="/">English</a><span>|</span></li>
+              <li><a href="/">FAQ</a><span>|</span></li>
+              <li><a href="/">Privacy Policy</a></li>
             </ul>
           </p>
           <p className="copyright">
             Xiaomi Inc., All rights reserved - Beijing ICP - 10046444 -
-            <a href="#">
+            <a href="/">
               <span>
                 <img
                   src={'https://account.xiaomi.com/static/res/9204d06/account-static/respassport/acc-2014/img/ghs.png'}

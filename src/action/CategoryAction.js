@@ -1,4 +1,4 @@
-import {ITEM_CAT_NAV_WITH_ITEMS, ITEM_CAT_ROOT_WITH_ITEMS, ITEM_VIEW_URL} from '../constants/Constants';
+import {ITEM_CAT_NAV_WITH_ITEMS, ITEM_CAT_ROOT_WITH_ITEMS} from '../constants/Constants';
 
 /**
  * fetch data of root categories with items

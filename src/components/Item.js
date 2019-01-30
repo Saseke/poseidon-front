@@ -36,15 +36,15 @@ class Item extends Component {
                 <div className="product-container">
                   <h2>{item.name}</h2>
                   <div className="right">
-                    <a href="">概述</a>
+                    <a href="/">概述</a>
                     <span className="separator">|</span>
-                    <a href="">参数</a>
+                    <a href="/">参数</a>
                     <span className="separator">|</span>
-                    <a href="">图集</a>
+                    <a href="/">图集</a>
                     <span className="separator">|</span>
-                    <a href="" target="_blank">F码通道</a>
+                    <a href="/" target="_blank">F码通道</a>
                     <span className="separator">|</span>
-                    <a href="">用户评价</a>
+                    <a href="/">用户评价</a>
                   </div>
                 </div>
               </div>
@@ -52,14 +52,14 @@ class Item extends Component {
 
             <div className="please-login">
               为方便您购买，请提前登录
-              <a href="">立即登录</a>
-              <a href="javascript:void(0)" className="iconfont">×</a>
+              <a href="/">立即登录</a>
+              <a href="/" className="iconfont">×</a>
             </div>
 
             <div className="pro-choose-main">
               <div className="pro-view">
                 <img style={{width: '100%', height: '100%'}}
-                     src={'https://i8.mifile.cn/a1/pms_1537324004.07876883.jpg'}/>
+                     src={'https://i8.mifile.cn/a1/pms_1537324004.07876883.jpg'} alt=''/>
               </div>
               <div className="pro-info">
                 <h1>{item.name}</h1>
@@ -88,15 +88,15 @@ class Item extends Component {
                       <div className="step-title">选择版本</div>
                       <ul>
                         <li>
-                          <a href="javascript:void(0);"> <span className="name">6GB+128GB </span>
+                          <a href="/"> <span className="name">6GB+128GB </span>
                             <span className="price"> 3299元 </span> </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0);"> <span className="name">8GB+128GB </span>
+                          <a href="/"> <span className="name">8GB+128GB </span>
                             <span className="price"> 3599元 </span> </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0);"> <span className="name">8GB+256GB </span>
+                          <a href="/"> <span className="name">8GB+256GB </span>
                             <span className="price"> 3999元 </span> </a>
                         </li>
                       </ul>
@@ -106,14 +106,14 @@ class Item extends Component {
                       <div className="step-title">选择颜色</div>
                       <ul>
                         <li>
-                          <a href="javascript:void(0);"> 黑色 </a>
+                          <a href="/"> 黑色 </a>
                         </li>
                       </ul>
                       <div className="clear"/>
                     </div>
                     <div className="pro-choose-prot">
                       <div className="step-title ">选择小米提供的意外保护
-                        <a href="" target="_blank" className="step-pro">了解意外保护 ></a>
+                        <a href="/" target="_blank" className="step-pro">了解意外保护 ></a>
                       </div>
                       <ul className="protect">
                         <li>
@@ -122,10 +122,10 @@ class Item extends Component {
                             <p className="desc">手机意外摔落/进水/碾压等损坏</p>
                             <p className="agreement">
                               我已阅读
-                              <a href="" target="_blank">
+                              <a href="/" target="_blank">
                                 服务条款
                                 <span>|</span></a>
-                              <a href="" target="_blank">
+                              <a href="/" target="_blank">
                                 常见问题
                               </a>
                             </p>  <span className="price">  299元  </span>
@@ -137,10 +137,10 @@ class Item extends Component {
                             <p className="desc">手机意外碎屏</p>
                             <p className="agreement">
                               我已阅读
-                              <a href="" target="_blank">
+                              <a href="/" target="_blank">
                                 服务条款
                                 <span>|</span></a>
-                              <a href="" target="_blank">
+                              <a href="/" target="_blank">
                                 常见问题
                               </a>
                             </p>  <span className="price">  159元  </span>
@@ -150,7 +150,7 @@ class Item extends Component {
                     </div>
                     <div className="pro-choose-prot">
                       <div className="step-title ">选择小米提供的延长保修
-                        <a href="" target="_blank" className="step-pro">{'了解延长保修'} </a>
+                        <a href="/" target="_blank" className="step-pro">{'了解延长保修'} </a>
                       </div>
                       <ul className="protect">
                         <li>
@@ -159,10 +159,10 @@ class Item extends Component {
                             <p className="desc">厂保延一年，性能故障免费维修</p>
                             <p className="agreement">
                               我已阅读
-                              <a href="" target="_blank">
+                              <a href="/" target="_blank">
                                 服务条款
                                 <span>|</span></a>
-                              <a href="" target="_blank">
+                              <a href="/" target="_blank">
                                 常见问题
                               </a>
                             </p>  <span className="price">  99元  </span>
@@ -178,10 +178,10 @@ class Item extends Component {
                     </div>
                     <ul className="btn-wrap clear">
                       <li>
-                        <a href="javascript:void(0);" className="btn">加入购物车</a>
+                        <a href="/" className="btn">加入购物车</a>
                       </li>
                       <li>
-                        <a href="" className="btn-gray btn-like ">
+                        <a href="/" className="btn-gray btn-like ">
                           喜欢
                         </a>
                       </li>
