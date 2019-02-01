@@ -34,4 +34,5 @@ export const MEMBER_SERVICE = `${GATEWAY_URL}/member`;
 // 登录认证服务
 export const AUTH_SERVICE_URL = `${GATEWAY_URL}/auth`;
 
-
+// 各种错误的信息
+export const NETWORK_BUSY = '网络繁忙,请重试';

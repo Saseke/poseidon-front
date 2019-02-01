@@ -2,14 +2,19 @@ import React, {Component} from 'react';
 import MiddleBar2 from './MiddleBar';
 import '../styles/item.css';
 import {fetchItem} from '../action/ItemAction';
+import {CartModel} from '../model/CartModel';
+import {addCart} from '../action/CartAction';
+import {NETWORK_BUSY} from '../constants/Constants';
+import {ItemModel} from '../model/ItemModel';
 
 class Item extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      item: {},
-      fetching: true
+      item: ItemModel,
+      fetching: true,
+      cart: CartModel
     };
   }
 
@@ -20,6 +25,23 @@ class Item extends Component {
       item: itemData,
       fetching: false
     });
+  }
+
+  async handleAddItemToCart(item) {
+    let cart = this.state.cart;
+    cart.quantity = 1;
+    cart.itemId = item.itemId;
+    cart.price = item.price;
+    cart.memberNickname = localStorage.getItem('curUser');
+    cart.itemImage = item.image;
+    cart.itemSellPoint = item.sellPoint;
+    const rep = await addCart(cart);
+    if (rep.code === 200) {
+      //   跳转到添加到购物车成功页面页面
+      alert('将商品添加到购物车成功');
+    } else {
+      alert(NETWORK_BUSY);
+    }
   }
 
   render() {
@@ -178,7 +200,7 @@ class Item extends Component {
                     </div>
                     <ul className="btn-wrap clear">
                       <li>
-                        <a href="/" className="btn">加入购物车</a>
+                        <button onClick={this.handleAddItemToCart.bind(this, item)} className="btn">加入购物车</button>
                       </li>
                       <li>
                         <a href="/" className="btn-gray btn-like ">

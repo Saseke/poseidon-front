@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import '../styles/middlebar.css';
 import {fetchNavCategoriesWithItems} from '../action/CategoryAction';
 import $ from 'jquery';
+import {ItemCartModel} from '../model/ItemCatModel';
+import {ItemModel} from '../model/ItemModel';
 
 class MiddleBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoriesDto: {},
-      items: [],
+      categoriesDto: ItemCartModel,
+      items: [ItemModel],
       fetching: true
     };
   }
@@ -65,7 +67,7 @@ class MiddleBar extends Component {
               }
             </ul>
             <div className="search-box">
-              <input type="text" value="" id="search"/>
+              <input type="text" defaultValue="" id="search"/>
               <button className="search-icon">
               </button>
             </div>

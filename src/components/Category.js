@@ -5,6 +5,7 @@ import TopBar from '../containers/TopBar';
 import '../styles/category.css';
 import {fetchPanelByCatIds, fetchPanelWithItemsByPanelId} from '../action/PanelAction';
 import Carousels from '../containers/Carousels';
+import {PanelModel} from '../model/PanelModel';
 
 class Category extends Component {
 
@@ -12,7 +13,7 @@ class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      panels: null,
+      panels: [PanelModel],
       fetching: true
     };
   }

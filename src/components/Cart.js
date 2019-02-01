@@ -1,83 +1,78 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {Modal} from 'antd';
 import '../styles/cart.css';
 import Footer from '../containers/Footer';
-import {fetchCartByUserName} from '../action/CartAction';
+import {deleteCart, fetchCartByUserName, updateCart} from '../action/CartAction';
 import '../styles/antd-confirm.css';
+import {NETWORK_BUSY} from '../constants/Constants';
+import {CartModel} from '../model/CartModel';
 
-const confirm = Modal.confirm;
-
-function showConfirm() {
-  confirm({
-    title: '提示',
-    content: '确定要删除么?',
-    onOk() {
-      return new Promise((resolve, reject) => {
-        setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-      }).catch(() => console.log('Oops errors!'));
-    },
-    onCancel() {
-    },
-  });
-}
 
 class Cart extends Component {
   constructor(props) {
     super(props);
-    this.onClickAdd = this.onClickAdd.bind(this);
-    this.onCLickReduce = this.onCLickReduce.bind(this);
-    this.changeChecked = this.changeChecked.bind(this);
     this.state = {
       curUser: localStorage.getItem('curUser'),
-      cart: {},
+      carts: [CartModel],
       fetching: true,
-      initValue: 1,
-      checked: true
     };
-  }
-
-  changeChecked(checked) {
-    checked = this.state.checked;
-    if (checked === true) {
-      this.setState({checked: false});
-    } else {
-      this.setState({checked: true});
-    }
-  }
-
-  onClickAdd() {
-    let {initValue} = this.state.initValue;
-
-    if (++initValue > 10) {
-      this.setState({initValue: 10});
-      alert('商品超过最大购买限制');
-    } else {
-      this.setState({initValue});
-    }
-  }
-
-  onCLickReduce() {
-    let {initValue} = this.state.initValue;
-
-    if (++initValue < 1) {
-      this.setState({initValue: 1});
-    } else {
-      this.setState({initValue});
-    }
   }
 
   async componentDidMount() {
     const {curUser} = this.state;
-    const cart = await fetchCartByUserName(curUser);
+    const carts = await fetchCartByUserName(curUser);
     this.setState({
-      cart,
+      carts,
       fetching: false
     });
   }
 
+  //处理input标签的变化
+  onHandleChange = (operation, index) => event => {
+    let carts = [...this.state.carts];
+    let quantity = carts[index].quantity;
+    if (operation === 'add') {
+      if (++quantity > 10) {
+        alert('超过最大的限制');
+      } else {
+        carts[index].quantity = quantity;
+      }
+    } else {
+      if (--quantity < 0) {
+        alert('数量不能小于0');
+      } else {
+        carts[index].quantity = quantity;
+      }
+    }
+    this.setState({
+      carts
+    });
+  };
+
+  async handleDelete(itemCartId) {
+    const {curUser} = this.state;
+    let carts = [...this.state.carts];
+    const rep = await deleteCart(curUser, itemCartId);
+    if (rep.code === 200) {
+      carts.splice(carts.findIndex(cart => cart.itemCartId === itemCartId), 1);
+      this.setState({
+        carts
+      });
+    } else {
+      alert(NETWORK_BUSY);
+    }
+  }
+
+  async handleUpdate(itemId, quantity) {
+    const {curUser} = this.state;
+    const rep = await updateCart(curUser, itemId, quantity);
+    if (rep.code !== 200) {
+      alert(NETWORK_BUSY);
+    }
+  }
+
   render() {
-    const {curUser, cart, fetching} = this.state;
+    const {curUser, carts, fetching} = this.state;
     if (fetching) {
       return null;
     }
@@ -108,7 +103,7 @@ class Cart extends Component {
         </div>
 
         {
-          cart.length === 0 ?
+          carts.length === 0 ?
             <div className="cart-empty">
               <h2>您的购物车还是空的!</h2>
               {
@@ -126,8 +121,7 @@ class Cart extends Component {
               <div className="cart-goods-list">
                 <div className="list-head">
                   <div className="col-check">
-                    <input type="checkbox" className="checkbox" id="selectAll" onClick={this.changeChecked}
-                           checked={this.state.checked}/>
+                    <input type="checkbox" className="checkbox" id="selectAll"/>
                     <span className="selectall">全选</span>
                   </div>
                   <div className="col-img"/>
@@ -138,33 +132,36 @@ class Cart extends Component {
                   <div className="col-action">操作</div>
                 </div>
                 <div id="list-body">
-
                   {
-                    cart.map((item, index) => (
+                    carts.map((cart, index) => (
                       <div key={index} className="item-box">
                         <div className="col-check">
                           <input type="checkbox" className="itemcheck" checked={this.state.checked}/>
                         </div>
                         <div className="col-img">
                           <a href="/">
-                            <img width='80px' height='80px' src={item.itemImage} alt=""/>
+                            <img width='80px' height='80px' src={cart.itemImage} alt=""/>
                           </a>
                         </div>
                         <div className="col-name">
-                          <a href="/">{item.itemSellPoint}</a>
+                          <a href="/">{cart.itemSellPoint}</a>
                         </div>
-                        <div className="col-price"> {item.price}元</div>
+                        <div className="col-price"> {cart.price}元</div>
                         <div className="col-num">
                           <div className="change-goods-num">
-                            <button value="-" onClick={this.onCLickReduce}>-</button>
-                            <input type="text" className="num" id='num' value={this.state.initValue}/>
-                            <button value="+" onClick={this.onClickAdd}>+</button>
+                            <button value="-" onClick={this.onHandleChange('reduce', index)}>-</button>
+                            <input type="text" className="num" id='num' onChange={this.onHandleChange}
+                                   value={cart.quantity}/>
+                            <button value="+" onBlurCapture={this.handleUpdate.bind(this, cart.itemId, cart.quantity)}
+                                    onClick={this.onHandleChange('add', index)}>+
+                            </button>
                           </div>
                         </div>
                         {/*需要动态变更*/}
-                        <div className="col-total"> {this.state.initValue * item.price}元</div>
+                        <div className="col-total"> {cart.price}元</div>
                         <div className="col-action">
-                          <p className="delete" onClick={showConfirm}>×</p>
+                          <p className="delete"
+                             onClick={this.handleDelete.bind(this, cart.itemCartId, cart.quantity)}>×</p>
                         </div>
                       </div>
                     ))
