@@ -75,7 +75,7 @@ class Cart extends Component {
       const multiChecked = !this.state.multiChecked;
       if (multiChecked) {
         let price = 0;
-        carts.map((cart) => {
+        carts.forEach((cart) => {
           cart.checked = true;
           price += cart.price;
         });
@@ -86,7 +86,7 @@ class Cart extends Component {
           multiChecked
         });
       } else {
-        carts.map((cart) => {
+        carts.forEach((cart) => {
           cart.checked = false;
         });
         this.setState({
