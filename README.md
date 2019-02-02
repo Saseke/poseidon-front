@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Poseidon
 
-## Available Scripts
+## 说明
 
-In the project directory, you can run:
+> poseidon采用微服务架构方式,基于SpringCloud+SpringBoot+Mybatis Plus+React的商城系统。主要包括包括前台商城系统和后台管理系统。
+>
+> 如果该项目对您有帮助，您可以点一下右上角的"star" 支持一下 谢谢!
+>
+> 或者可以"follow"一下,该项目会一直持续更新,不断添加新功能和优化
 
-### `npm start`
+## 组织结构
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+Poseidon
+├── psd-config -- 通用配置
+├── psd-discovery -- Eureka注册中心
+├── psd-elastic-search -- 基于Elasticsearch的商品搜索,推荐服务
+├── psd-gateway -- 网关服务
+├── psd-generate -- 采用Mybatis Generator自动生成代码
+├── psd-member -- 用户服务
+├── psd-web-auth -- JWT用户登录服务
+├── psd-web-shop-cart -- 购物车服务
+└── psd-web-view -- 商品展示服务
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 所用技术
 
-### `npm test`
+### 前端技术
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| 技术名称 |   说明   |        链接         |
+| :------: | :------: | :-----------------: |
+|  React   | 前端框架 | https://reactjs.org |
 
-### `npm run build`
+### 后端技术
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+|     技术名称     |        说明        |                    链接                     |
+| :--------------: | :----------------: | :-----------------------------------------: |
+|   SpringCloud    |   微服务构建框架   |   http://spring.io/projects/spring-cloud    |
+|    SpringBoot    |    容器+MVC框架    |   https://spring.io/projects/spring-boot    |
+|     Mybatis      |      ORM框架       |      http://www.mybatis.org/mybatis-3       |
+| MybatisGenerator | 文件结构和代码生成 |                                             |
+|   MybatisPlus    |    Mybatis增强     |           https://mp.baomidou.com           |
+|    Swagger-UI    |    文档生产工具    | <https://github.com/swagger-api/swagger-ui> |
+|  Elasticsearch   |      搜索引擎      |           https://www.elastic.co            |
+|     RabbitMq     |      消息队列      |         <https://www.rabbitmq.com/          |
+|      Redis       |     分布式缓存     |              https://redis.io               |
+|      Druid       |    数据库连接池    |      https://github.com/alibaba/druid       |
+|      Docker      |       容器化       |             https://docker.com              |
+|     JWT验证      |      JWT登录       |               https://jwt.io                |
