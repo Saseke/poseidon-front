@@ -1,5 +1,4 @@
 .product-box{
-    position: relative;
     z-index: 4;
     background: #fff;
     border-top: 1px solid #e0e0e0;
@@ -8,7 +7,6 @@
 }
 
 .nav-bar{
-    position: relative;
     height: 63px;
     width: 100%;
     margin-top: 0;
@@ -234,7 +232,7 @@
 .protect li{
     background: #fff;
     cursor: pointer;
-    padding: 30px 0;
+    padding: 30px 20px;
     float: none;
     overflow: hidden;
     position: relative;
@@ -319,15 +317,20 @@
 }
 
 .btn{
+    cursor: pointer;
     display: inline-block;
     text-align: center;
     background: #ff6700;
-    border-color: #ff6700;
+    border:none;
     color: #fff;
     width: 298px;
     height: 52px;
     line-height: 52px;
     font-size: 16px;
+}
+
+.btn:focus{
+    border:1px solid #fff;
 }
 
 .btn-like{

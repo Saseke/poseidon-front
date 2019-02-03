@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MiddleBar2 from './MiddleBar';
+import MiddleBar2 from '../components/MiddleBar';
 import '../styles/item.css';
 import {fetchItem} from '../action/ItemAction';
 import {CartModel} from '../model/CartModel';
@@ -14,7 +14,8 @@ class Item extends Component {
     this.state = {
       item: ItemModel,
       fetching: true,
-      cart: CartModel
+      cart: CartModel,
+      curUser: localStorage.getItem('curUser')
     };
   }
 
@@ -38,14 +39,15 @@ class Item extends Component {
     const rep = await addCart(cart);
     if (rep.code === 200) {
       //   跳转到添加到购物车成功页面页面
-      alert('将商品添加到购物车成功');
+      // alert('将商品添加到购物车成功');
+      window.location.href='/addsucc';
     } else {
       alert(NETWORK_BUSY);
     }
   }
 
   render() {
-    const {item, fetching} = this.state;
+    const {item, fetching,curUser} = this.state;
     if (fetching) {
       return null;
     } else {
@@ -71,12 +73,15 @@ class Item extends Component {
                 </div>
               </div>
             </div>
+            {curUser ===null?
+              <div className="please-login">
+                为方便您购买，请提前登录
+                <a href="/">立即登录</a>
+                <a href="/" className="iconfont">×</a>
+              </div>:
+              <div></div>
+            }
 
-            <div className="please-login">
-              为方便您购买，请提前登录
-              <a href="/">立即登录</a>
-              <a href="/" className="iconfont">×</a>
-            </div>
 
             <div className="pro-choose-main">
               <div className="pro-view">
@@ -135,7 +140,7 @@ class Item extends Component {
                     </div>
                     <div className="pro-choose-prot">
                       <div className="step-title ">选择小米提供的意外保护
-                        <a href="/" target="_blank" className="step-pro">了解意外保护 ></a>
+                        <a href="/" target="_blank" className="step-pro">了解意外保护 {'>'}</a>
                       </div>
                       <ul className="protect">
                         <li>

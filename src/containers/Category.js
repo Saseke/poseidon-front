@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import MiddleBar from './MiddleBar';
-import Footer from '../containers/Footer';
-import TopBar from '../containers/TopBar';
+import MiddleBar from '../components/MiddleBar';
+import Footer from '../components/Footer';
+import TopBar from '../components/TopBar';
 import '../styles/category.css';
 import {fetchPanelByCatIds, fetchPanelWithItemsByPanelId} from '../action/PanelAction';
-import Carousels from '../containers/Carousels';
+import Carousels from '../components/Carousels';
 import {PanelModel} from '../model/PanelModel';
 
 class Category extends Component {

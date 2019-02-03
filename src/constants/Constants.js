@@ -1,4 +1,4 @@
-export const GATEWAY_URL = 'http://localhost:8769';
+export const GATEWAY_URL = 'http://www.test.com:8769';
 
 // 商品展示服务
 export const ITEM_SERVICE = `${GATEWAY_URL}/view`;

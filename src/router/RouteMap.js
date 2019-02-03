@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Index from '../components/Index';
-import Category from '../components/Category';
+import Index from '../containers/Index';
+import Category from '../containers/Category';
 
-import Item from '../components/Item';
-import Login from '../components/Login';
-import Cart from '../components/Cart';
+import Item from '../containers/Item';
+import Login from '../containers/Login';
+import Cart from '../containers/Cart';
+import AddCartSuccess from '../containers/AddCartSuccess';
+import CheckOrder from '../containers/CheckOrder';
 
 class RouteMap extends Component {
   render() {
@@ -19,6 +21,8 @@ class RouteMap extends Component {
             <Route path="/item/:itemId" component={Item}/>
             <Route path="/login" component={Login}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/addsucc" component={AddCartSuccess}/>
+            <Route path="/checkorder" component={CheckOrder}/>
           </Switch>
         </div>
       </BrowserRouter>

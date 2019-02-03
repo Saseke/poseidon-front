@@ -11,6 +11,7 @@ body{
 
 
 .goods-content{
+    float: left;
     margin-bottom:26px;
 }
 
@@ -45,7 +46,7 @@ body{
 .actions .btn1{
     width: 180px;
     margin-left: 12px;
-    margin-top: 5px;
+    margin-top: 15px;
     background: #fff;
     color: #757575;
     display: inline-block;

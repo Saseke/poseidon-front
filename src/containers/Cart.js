@@ -232,7 +232,7 @@ class Cart extends Component {
                   <div className="total-price">合计：
                     <em id="cartTotalPrice">{totalPrice}</em>
                     元
-                    <a href="/" className="btn-primary" id="goCheckout">去结算</a>
+                    <a href="/checkorder" className="btn-primary" id="goCheckout">去结算</a>
                   </div>
                 </div>
               </div>

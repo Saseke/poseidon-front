@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import MiddleBar from './MiddleBar';
-import Carousels from '../containers/Carousels';
-import Widget from '../containers/Widget';
-import Banner from '../containers/Banner';
-import TopBar from '../containers/TopBar';
-import Footer from '../containers/Footer';
-import '../styles/contain.css';
-import '../styles/indexContent.css';
+import MiddleBar from '../components/MiddleBar';
+import Carousels from '../components/Carousels';
+import Widget from '../components/Widget';
+import Banner from '../components/Banner';
+import TopBar from '../components/TopBar';
+import Footer from '../components/Footer';
 import {Link} from 'react-router-dom';
-import '../styles/panel.css';
 import $ from 'jquery';
 import {fetchRootCategoriesWithItems} from '../action/CategoryAction';
 import {fetchPanelByRemark} from '../action/PanelAction';
+import '../styles/contain.css';
+import '../styles/indexContent.css';
+import '../styles/panel.css';
 
 class Index extends Component {
 

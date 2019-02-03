@@ -4,6 +4,7 @@ import {fetchNavCategoriesWithItems} from '../action/CategoryAction';
 import $ from 'jquery';
 import {ItemCartModel} from '../model/ItemCatModel';
 import {ItemModel} from '../model/ItemModel';
+import search from '../img/serch.png';
 
 class MiddleBar extends Component {
   constructor(props) {
@@ -33,6 +34,25 @@ class MiddleBar extends Component {
       }, function () {
         List.css('display', 'none');
       });
+    });
+
+    $('#search').focus(function () {
+      $('#serch-item').css('display', 'block');
+      $('#search').css({
+        'color':'#333333',
+        'outline':'none',
+        'border':'1px darkorange solid'
+      });
+      $('#serch-icon').css('border-color','darkorange');
+    });
+
+    $('#search').blur(function () {
+      setTimeout(function () {
+        $('#serch-item').css('display', 'none');
+        $('#search').css('border-color','#c9c9c9');
+        $('#serch-icon').css('border-color','#c9c9c9');
+      }, 500);
+
     });
 
 
@@ -68,7 +88,18 @@ class MiddleBar extends Component {
             </ul>
             <div className="search-box">
               <input type="text" defaultValue="" id="search"/>
-              <button className="search-icon">
+              <div className="serch-item" id="serch-item">
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+                <a href="/"><p className="name">小米6X</p><p className="count">还剩6件</p></a>
+              </div>
+              <button className="serch-icon" id='serch-icon'>
+                <img src={search} alt=""/>
               </button>
             </div>
           </div>
