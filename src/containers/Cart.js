@@ -59,17 +59,20 @@ class Cart extends Component {
       let {count} = this.state;
       let carts = [...this.state.carts];
       carts[index].checked = !carts[index].checked;
-      carts[index].checked ?
+      if (carts[index].checked) {
         this.setState({
           carts,
           count: count + 1,
           totalPrice: totalPrice + carts[index].price
-        })
-        : this.setState({
+        });
+      } else {
+        this.setState({
           carts,
           count: count - 1,
-          totalPrice: totalPrice - carts[index].price
+          totalPrice: totalPrice - carts[index].price,
+          multiChecked: false
         });
+      }
     } else if (operation === 'multi') {
       let carts = [...this.state.carts];
       const multiChecked = !this.state.multiChecked;
@@ -124,7 +127,7 @@ class Cart extends Component {
   }
 
   render() {
-    const {curUser, carts, count, totalPrice, fetching} = this.state;
+    const {curUser, carts, count, totalPrice, fetching,multiChecked} = this.state;
     if (fetching) {
       return null;
     }
@@ -173,7 +176,7 @@ class Cart extends Component {
               <div className="cart-goods-list">
                 <div className="list-head">
                   <div className="col-check">
-                    <input type="checkbox" className="checkbox" onChange={this.handleCheckbox('multi', 0)}
+                    <input type="checkbox" className="checkbox" checked={multiChecked} onChange={this.handleCheckbox('multi', 0)}
                            id="selectAll"/>
                     <span className="selectall">全选</span>
                   </div>
@@ -198,13 +201,13 @@ class Cart extends Component {
                           </a>
                         </div>
                         <div className="col-name">
-                          <a href="/">{cart.itemSellPoint}</a>
+                          <a href="/">{cart.itemName}</a>
                         </div>
                         <div className="col-price"> {cart.price}元</div>
                         <div className="col-num">
                           <div className="change-goods-num">
                             <button value="-" onClick={this.handleChange('reduce', index)}>-</button>
-                            <input type="text" className="num" id='num' onChange={this.onHandleChange}
+                            <input type="text" className="num" id='num' onChange={this.handleChange}
                                    value={cart.quantity}/>
                             <button value="+" onBlurCapture={this.handleUpdate.bind(this, cart.itemId, cart.quantity)}
                                     onClick={this.handleChange('add', index)}>+

@@ -6,9 +6,9 @@ import Category from '../containers/Category';
 import Item from '../containers/Item';
 import Login from '../containers/Login';
 import Cart from '../containers/Cart';
-import AddCartSuccess from '../containers/AddCartSuccess';
-import CheckOrder from '../containers/CheckOrder';
 import MyCenter from '../containers/MyCenter';
+import VerifyOrder from '../containers/VerifyOrder';
+import Success from '../components/Success';
 
 class RouteMap extends Component {
   render() {
@@ -22,9 +22,9 @@ class RouteMap extends Component {
             <Route path="/item/:itemId" component={Item}/>
             <Route path="/login" component={Login}/>
             <Route path="/cart" component={Cart}/>
-            <Route path="/addsucc" component={AddCartSuccess}/>
-            <Route path="/checkorder" component={CheckOrder}/>
             <Route path="/mycenter" component={MyCenter}/>
+            <Route path="/success" component={Success}/>
+            <Route path="/verify/order" component={VerifyOrder}/>
           </Switch>
         </div>
       </BrowserRouter>

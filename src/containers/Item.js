@@ -36,18 +36,27 @@ class Item extends Component {
     cart.memberNickname = localStorage.getItem('curUser');
     cart.itemImage = item.image;
     cart.itemSellPoint = item.sellPoint;
+    cart.itemName = item.name;
     const rep = await addCart(cart);
     if (rep.code === 200) {
       //   跳转到添加到购物车成功页面页面
       // alert('将商品添加到购物车成功');
-      window.location.href='/addsucc';
+      let data = {
+        message: '添加到购物车成功',
+        details: `${cart.itemName}.${cart.itemSellPoint}`
+      };
+      let path = {
+        pathname: '/success',
+        state: data
+      };
+      this.props.history.push(path);
     } else {
       alert(NETWORK_BUSY);
     }
   }
 
   render() {
-    const {item, fetching,curUser} = this.state;
+    const {item, fetching, curUser} = this.state;
     if (fetching) {
       return null;
     } else {
@@ -73,15 +82,14 @@ class Item extends Component {
                 </div>
               </div>
             </div>
-            {curUser ===null?
+            {curUser === null ?
               <div className="please-login">
                 为方便您购买，请提前登录
                 <a href="/">立即登录</a>
                 <a href="/" className="iconfont">×</a>
-              </div>:
-              <div></div>
+              </div> :
+              <div/>
             }
-
 
             <div className="pro-choose-main">
               <div className="pro-view">

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/checkOrder.css';
 
-class CheckOrder extends Component {
+class VerifyOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,9 +14,9 @@ class CheckOrder extends Component {
     return (
       <div className="order-header">
         <div className="header-container">
-          <a href=""><img src="https://s01.mifile.cn/i/logo-footer.png?v2"/></a>
+          <a href="/"><img src="https://s01.mifile.cn/i/logo-footer.png?v2" alt=''/></a>
           <div className="text">确认订单</div>
-          <div className="operation"><a href="#">{curUser}</a><span>|</span><a href="#">我的订单</a></div>
+          <div className="operation"><a href="/">{curUser}</a><span>|</span><a href="/">我的订单</a></div>
         </div>
         <div className="page-main">
           <div className="post-tips">
@@ -42,7 +42,7 @@ class CheckOrder extends Component {
                 <div className="section-header">
                   <h3 className="title">商品及优惠券</h3>
                   <div className="more">
-                    <a href="#">返回购物车 {'>'}</a>
+                    <a href="/">返回购物车 {'>'}</a>
                   </div>
                 </div>
                 <div className="goods-body">
@@ -51,7 +51,7 @@ class CheckOrder extends Component {
                       <img src="https://i1.mifile.cn/a1/pms_1537324004.08544830!30x30.jpg" alt=""/>
                     </li>
                     <li className="col-name">
-                      <a href="#">小米8 青春 全网通版 6GB内存 梦幻蓝 64GB</a>
+                      <a href="/">小米8 青春 全网通版 6GB内存 梦幻蓝 64GB</a>
                     </li>
                     <li className="col-price"> 1499元 x 1</li>
                     <li className="col-total">1499元</li>
@@ -71,7 +71,7 @@ class CheckOrder extends Component {
                     <span>电子发票</span>
                     <span>个人</span>
                     <span>商品明细</span>
-                    <a href="">修改{'>'}</a>
+                    <a href="/">修改{'>'}</a>
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@ class CheckOrder extends Component {
               </div>
               <div className="section-bar">
                 <div className="fr">
-                  <a href="#" className="btn">去结算</a>
+                  <a href="/" className="btn">去结算</a>
                 </div>
               </div>
             </div>
@@ -110,4 +110,4 @@ class CheckOrder extends Component {
   }
 }
 
-export default CheckOrder;
+export default VerifyOrder;

@@ -76,6 +76,7 @@
 
 .portal-main{
     display: flex;
+    justify-content: space-between;
 }
 
 .user-card {
@@ -107,7 +108,7 @@
     border-radius: 50%;
 }
 
-.user-card .box{
+.user-card .box1{
     padding-top:40px;
     padding-left: 20px;
 }

@@ -74,7 +74,7 @@ class MiddleBar extends Component {
       return null;
     }
     return (
-      <div>
+      <div style={{backgroundColor:'#fafafa'}}>
         <div className="site-middlebar">
           <a href="/"><img className="logo-icon" src="https://s01.mifile.cn/i/logo-footer.png?v2" alt=''/></a>
           <div id="middle-nav">
