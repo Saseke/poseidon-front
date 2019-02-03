@@ -12,6 +12,7 @@ export const CartModel = {
   memberNickname: null,
   itemImage: null,
   itemSellPoint: null,
+  itemName: null,
   checked: false// 额外加的字段,默认是0,表示没有选中状态
 };
 
