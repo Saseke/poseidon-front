@@ -8,6 +8,7 @@ import Login from '../containers/Login';
 import Cart from '../containers/Cart';
 import AddCartSuccess from '../containers/AddCartSuccess';
 import CheckOrder from '../containers/CheckOrder';
+import MyCenter from '../containers/MyCenter';
 
 class RouteMap extends Component {
   render() {
@@ -23,6 +24,7 @@ class RouteMap extends Component {
             <Route path="/cart" component={Cart}/>
             <Route path="/addsucc" component={AddCartSuccess}/>
             <Route path="/checkorder" component={CheckOrder}/>
+            <Route path="/mycenter" component={MyCenter}/>
           </Switch>
         </div>
       </BrowserRouter>
