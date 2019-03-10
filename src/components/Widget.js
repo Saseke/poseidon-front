@@ -23,7 +23,7 @@ class Widget extends Component{
                 </ul>
                 <div className="clear"> </div>
             </div>
-        )
+        );
     }
 }
 
