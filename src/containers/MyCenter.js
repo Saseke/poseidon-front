@@ -3,10 +3,31 @@ import TopBar from '../components/TopBar';
 import MiddleBar from '../components/MiddleBar';
 import Footer from '../components/Footer';
 import '../styles/myCenter.css';
+import {MemberModel} from '../model/MemberModel';
+import {fetchMemberByName} from '../action/MemberAction';
 
-class MyCenter extends Component{
+class MyCenter extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: MemberModel,
+      curUser: localStorage.getItem('curUser'),
+      fetching: true
+    };
+  }
+
+  async componentDidMount() {
+    const {curUser} = this.state;
+    const userInfo = await fetchMemberByName(curUser);
+    this.setState({
+      userInfo
+    });
+  }
+
   render() {
-    return(
+    const {userInfo} = this.state;
+    return (
       <div>
         <TopBar/>
         <MiddleBar/>
@@ -72,12 +93,13 @@ class MyCenter extends Component{
                 <div className="content-box">
                   <div className="portal-main">
                     <div className="user-card">
-                      <img className="avatar" src="https://account.xiaomi.com/static/img/passport/photo.jpg" width="150" height="150" alt=""/>
-                        <div className="box1">
-                          <h2 className="username">2187728043</h2>
-                          <p className="tip">下午好～</p>
-                          <a className="link" href="/">修改个人信息{'>'}</a>
-                        </div>
+                      <img className="avatar" src="https://account.xiaomi.com/static/img/passport/photo.jpg" width="150"
+                           height="150" alt=""/>
+                      <div className="box1">
+                        <h2 className="username">{userInfo.username}</h2>
+                        <p className="tip">下午好～</p>
+                        <a className="link" href="/">修改个人信息{'>'}</a>
+                      </div>
                     </div>
 
                     <div className="user-actions">
@@ -104,7 +126,7 @@ class MyCenter extends Component{
                       <li>
                         <h3>待评价商品数：<span className="num">0</span></h3>
                         <img src="http://s01.mifile.cn/i/user/portal-icon-3.png" alt=""/>
-                          <a href="/">查看待评价商品<i className="iconfont"> {'>'} </i></a>
+                        <a href="/">查看待评价商品<i className="iconfont"> {'>'} </i></a>
                       </li>
                       <li>
                         <h3>喜欢的商品：<span className="num">0</span></h3>

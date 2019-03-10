@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import '../styles/cart.css';
 import Footer from '../components/Footer';
 import {deleteCart, fetchCartByUserName, updateCart} from '../action/CartAction';
-import '../styles/antd-confirm.css';
 import {NETWORK_BUSY} from '../constants/Constants';
 import {CartModel} from '../model/CartModel';
 
@@ -23,9 +22,10 @@ class Cart extends Component {
 
   async componentDidMount() {
     const {curUser} = this.state;
-    const carts = await fetchCartByUserName(curUser);
+    const cartsData = await fetchCartByUserName(curUser);
+    console.log(cartsData);
     this.setState({
-      carts,
+      carts: cartsData,
       fetching: false
     });
   }
@@ -34,21 +34,29 @@ class Cart extends Component {
   handleChange = (operation, index) => event => {
     let carts = [...this.state.carts];
     let quantity = carts[index].quantity;
+    let {totalPrice} = this.state;
     if (operation === 'add') {
       if (++quantity > 10) {
         alert('超过最大的限制');
       } else {
         carts[index].quantity = quantity;
+        if (carts[index].checked) {
+          totalPrice += carts[index].price;
+        }
       }
     } else {
       if (--quantity < 0) {
         alert('数量不能小于0');
       } else {
         carts[index].quantity = quantity;
+        if (carts[index].checked) {
+          totalPrice -= carts[index].price;
+        }
       }
     }
     this.setState({
-      carts
+      carts,
+      totalPrice
     });
   };
 
@@ -63,13 +71,13 @@ class Cart extends Component {
         this.setState({
           carts,
           count: count + 1,
-          totalPrice: totalPrice + carts[index].price
+          totalPrice: totalPrice + carts[index].price * carts[index].quantity
         });
       } else {
         this.setState({
           carts,
           count: count - 1,
-          totalPrice: totalPrice - carts[index].price,
+          totalPrice: totalPrice === 0 ? 0 : totalPrice - carts[index].price * carts[index].quantity,
           multiChecked: false
         });
       }
@@ -80,7 +88,7 @@ class Cart extends Component {
         let price = 0;
         carts.forEach((cart) => {
           cart.checked = true;
-          price += cart.price;
+          price += cart.price * cart.quantity;
         });
         this.setState({
           carts,
@@ -126,8 +134,21 @@ class Cart extends Component {
     }
   }
 
+  handleVerifyOrder = () => {
+    const {carts} = this.state;
+    let verifyCarts = carts.filter((cart) => cart.checked);
+
+    let totalPrice = 0;
+    verifyCarts.forEach((cart) => totalPrice += cart.price);
+    let path = {
+      pathname: '/verify/order',
+      state: {verifyCarts, totalPrice}
+    };
+    this.props.history.push(path);
+  };
+
   render() {
-    const {curUser, carts, count, totalPrice, fetching,multiChecked} = this.state;
+    const {curUser, carts, count, totalPrice, fetching, multiChecked} = this.state;
     if (fetching) {
       return null;
     }
@@ -176,7 +197,8 @@ class Cart extends Component {
               <div className="cart-goods-list">
                 <div className="list-head">
                   <div className="col-check">
-                    <input type="checkbox" className="checkbox" checked={multiChecked} onChange={this.handleCheckbox('multi', 0)}
+                    <input type="checkbox" className="checkbox" checked={multiChecked}
+                           onChange={this.handleCheckbox('multi', 0)}
                            id="selectAll"/>
                     <span className="selectall">全选</span>
                   </div>
@@ -235,7 +257,7 @@ class Cart extends Component {
                   <div className="total-price">合计：
                     <em id="cartTotalPrice">{totalPrice}</em>
                     元
-                    <a href="/checkorder" className="btn-primary" id="goCheckout">去结算</a>
+                    <button onClick={this.handleVerifyOrder} className="btn-primary" id="goCheckout">去结算</button>
                   </div>
                 </div>
               </div>

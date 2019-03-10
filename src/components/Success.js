@@ -26,7 +26,7 @@ class Success extends Component {
             <div className="clear"/>
           </div>
           <div className="actions">
-            <a href="javascript:history.back(-1)" className="btn1">返回上一级</a>
+            <a href={'javascript:history.back(-1)'} className="btn1">返回上一级</a>
             <a href={'/cart'} className="btn2">去购物车结算</a>
 
           </div>

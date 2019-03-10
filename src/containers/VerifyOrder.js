@@ -5,12 +5,16 @@ class VerifyOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      curUser: localStorage.getItem('curUser')
+      curUser: localStorage.getItem('curUser'),
     };
   }
 
   render() {
+
     const {curUser} = this.state;
+    const {verifyCarts, totalPrice} = this.props.location.state;
+    console.log(verifyCarts);
+    console.log(totalPrice);
     return (
       <div className="order-header">
         <div className="header-container">
@@ -42,21 +46,38 @@ class VerifyOrder extends Component {
                 <div className="section-header">
                   <h3 className="title">商品及优惠券</h3>
                   <div className="more">
-                    <a href="/">返回购物车 {'>'}</a>
+                    <a href={'/cart'}>返回购物车 {'>'}</a>
                   </div>
                 </div>
+
                 <div className="goods-body">
                   <ul className="good-list">
-                    <li className="col-img">
+                    {
+                      verifyCarts.map((verifyCart, index) => (
+                        <div key={index}>
+                          <li className="col-img">
+                            <img src={verifyCart.itemImage} alt=""/>
+                          </li>
+                          <li className="col-name">
+                            <a href="/">{verifyCart.itemSellPoint}</a>
+                          </li>
+                          <li className="col-price"> {verifyCart.price}x {verifyCart.quantity}</li>
+                          <li className="col-total">{verifyCart.price * verifyCart.quantity}</li>
+                        </div>
+                      ))
+                    }
+                    {/*                    <li className="col-img">
                       <img src="https://i1.mifile.cn/a1/pms_1537324004.08544830!30x30.jpg" alt=""/>
                     </li>
                     <li className="col-name">
                       <a href="/">小米8 青春 全网通版 6GB内存 梦幻蓝 64GB</a>
                     </li>
                     <li className="col-price"> 1499元 x 1</li>
-                    <li className="col-total">1499元</li>
+                    <li className="col-total">1499元</li>*/}
                   </ul>
                 </div>
+
+
               </div>
               <div className="section-options">
                 <div className="section-header">

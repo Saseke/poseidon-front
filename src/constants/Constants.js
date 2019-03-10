@@ -1,4 +1,4 @@
-export const GATEWAY_URL = 'http://www.test.com:8769';
+export const GATEWAY_URL = 'http://localhost:8769';
 
 // 商品展示服务
 export const ITEM_SERVICE = `${GATEWAY_URL}/view`;
@@ -26,13 +26,15 @@ export const ITEM_PANEL_REMARK_URL = `${PANEL}/re`;
 
 // 购物车服务
 export const WEB_CART_SERVICE = `${GATEWAY_URL}/cart`;
-export const CART = `${WEB_CART_SERVICE}/itemCart`;
 
 // member service
 export const MEMBER_SERVICE = `${GATEWAY_URL}/member`;
 
 // 登录认证服务
 export const AUTH_SERVICE_URL = `${GATEWAY_URL}/auth`;
+
+// order service
+export const ORDER_SERVICE_URL = `${GATEWAY_URL}/order`;
 
 // 各种错误的信息
 export const NETWORK_BUSY = '网络繁忙,请重试';

@@ -39,18 +39,18 @@ class MiddleBar extends Component {
     $('#search').focus(function () {
       $('#serch-item').css('display', 'block');
       $('#search').css({
-        'color':'#333333',
-        'outline':'none',
-        'border':'1px darkorange solid'
+        'color': '#333333',
+        'outline': 'none',
+        'border': '1px darkorange solid'
       });
-      $('#serch-icon').css('border-color','darkorange');
+      $('#serch-icon').css('border-color', 'darkorange');
     });
 
     $('#search').blur(function () {
       setTimeout(function () {
         $('#serch-item').css('display', 'none');
-        $('#search').css('border-color','#c9c9c9');
-        $('#serch-icon').css('border-color','#c9c9c9');
+        $('#search').css('border-color', '#c9c9c9');
+        $('#serch-icon').css('border-color', '#c9c9c9');
       }, 500);
 
     });
@@ -74,7 +74,7 @@ class MiddleBar extends Component {
       return null;
     }
     return (
-      <div style={{backgroundColor:'#fafafa'}}>
+      <div style={{backgroundColor: '#fafafa'}}>
         <div className="site-middlebar">
           <a href="/"><img className="logo-icon" src="https://s01.mifile.cn/i/logo-footer.png?v2" alt=''/></a>
           <div id="middle-nav">
@@ -125,65 +125,9 @@ class MiddleBar extends Component {
                       <p className="name">{item.name}</p>
                       <p className="price">{item.price}</p>
                     </li>
-                    {/*<div className="column-line" ></div>*/}
                   </div>
                 ))
               }
-
-
-              {/* <li>
-                <div className="new"> 新品</div>
-                如果不是新品
-                <div className='not-new></div>'
-                <a href="#">
-                  <img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mix3-320.png" alt="小米MIX 3" width="160"
-                       height="110"/>
-                </a>
-                <p className="name">小米MIX3</p>
-                <p className="price">3299元起</p>
-              </li>
-              <div className="column-line"></div>
-
-              <li>
-                <div className="new"> 新品</div>
-                如果不是新品
-                <div className='not-new'></div>
-                <a href="#">
-                  <img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mix3-320.png" alt="小米MIX" width="160"
-                       height="110"/>
-                </a>
-                <p className="name">小米MIX3</p>
-                <p className="price">3299元起</p>
-              </li>
-              <div className="column-line"></div>
-
-              <li>
-                <div className="new"> 新品</div>
-                如果不是新品
-                <div className='not-new'></div>
-                <a href="#">
-                  <img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mix3-320.png" alt="小米MIX" width="160"
-                       height="110"/>
-                </a>
-                <p className="name">小米MIX3</p>
-                <p className="price">3299元起</p>
-              </li>
-              <div className="column-line"></div>
-
-              <li>
-                <div className="new"> 新品</div>
-                如果不是新品
-                <div className='not-new'></div>
-                <a href="#">
-                  <img src="https://i1.mifile.cn/f/i/g/2015/cn-index/mix3-320.png" alt="小米MIX" width="160"
-                       height="110"/>
-                </a>
-                <p className="name">小米MIX3</p>
-                <p className="price">3299元起</p>
-              </li>
-              <div className="column-line"></div>*/}
-
-
             </ul>
 
           </div>
