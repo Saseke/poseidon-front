@@ -4,7 +4,7 @@ import {fetchNavCategoriesWithItems} from '../action/CategoryAction';
 import $ from 'jquery';
 import {ItemCartModel} from '../model/ItemCatModel';
 import {ItemModel} from '../model/ItemModel';
-import search from '../img/serch.png';
+import search from '../img/search.png';
 
 class MiddleBar extends Component {
   constructor(props) {

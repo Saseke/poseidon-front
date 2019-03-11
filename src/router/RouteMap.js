@@ -6,7 +6,7 @@ import Category from '../containers/Category';
 import Item from '../containers/Item';
 import Login from '../containers/Login';
 import Cart from '../containers/Cart';
-import MyCenter from '../containers/MyCenter';
+import Personal from '../containers/Personal';
 import VerifyOrder from '../containers/VerifyOrder';
 import Success from '../components/Success';
 
@@ -22,7 +22,7 @@ class RouteMap extends Component {
             <Route path="/item/:itemId" component={Item}/>
             <Route path="/login" component={Login}/>
             <Route path="/cart" component={Cart}/>
-            <Route path="/mycenter" component={MyCenter}/>
+            <Route path="/personal" component={Personal}/>
             <Route path="/success" component={Success}/>
             <Route path="/verify/order" component={VerifyOrder}/>
           </Switch>
