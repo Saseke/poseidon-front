@@ -45,7 +45,7 @@ export async function deleteCart(nickName, itemId) {
  */
 export async function addCart(cartInfo) {
   return await fetch(`${WEB_CART_SERVICE}`, {
-    method: 'POST',
+    method: REQUEST_TYPE.POST,
     headers: new Headers({
       'Content-Type': 'application/json',
     }),
@@ -73,3 +73,18 @@ export async function updateCart(curUser, itemId, quantity) {
     }
   });
 }
+
+export async function submitOrder(itemCartIds) {
+  return await fetch(`${WEB_CART_SERVICE}`, {
+    method: REQUEST_TYPE.PATCH,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify(itemCartIds)
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+  });
+}
+

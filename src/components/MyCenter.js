@@ -17,14 +17,18 @@ class MyCenter extends Component {
 
   async componentDidMount() {
     const {curUser} = this.state;
-    const userInfo = await fetchMemberByName(curUser);
-    this.setState({
-      userInfo
-    });
+    if (curUser != null) {
+      const userInfo = await fetchMemberByName(curUser);
+      localStorage.setItem('buyerId', userInfo.memberId);
+      this.setState({
+        userInfo
+      });
+    }
   }
 
   render() {
-    const {userInfo} = this.state;
+    const {userInfo, curUser} = this.state;
+    console.log(userInfo);
     return (
       <div>
         <div className="right-content">
@@ -35,9 +39,9 @@ class MyCenter extends Component {
                      height="150" alt=""/>
                 <div className="box1">
                   {
-                    userInfo.username == null ?
-                      <h2 className="username">{userInfo.username}</h2>:
-                      <h2 className="username">登录</h2>
+                    curUser == null ?
+                      <h2 className="username">登录</h2> :
+                      <h2 className="username">{userInfo.username}</h2>
                   }
                   <p className="tip">下午好～</p>
                   <a className="link" href="/">修改个人信息{'>'}</a>
@@ -47,8 +51,12 @@ class MyCenter extends Component {
               <div className="user-actions">
                 <ul className="action-list">
                   <li>账户安全：<span className="level">普通</span></li>
-                  <li>绑定手机：<span className="tel">134********07</span></li>
-                  <li>绑定邮箱：<span className="tel"> </span><a className="btn" href="/">绑定</a></li>
+                  <li>绑定手机：<span className="tel">{userInfo.phone}</span></li>
+                  {
+                    userInfo.email == null ?
+                      <li>绑定邮箱：<span className="tel"> </span><a className="btn" href="/">绑定</a></li> :
+                      <li>绑定邮箱：<span className="tel">{userInfo.email} </span><a className="btn" href="/">修改</a></li>
+                  }
                 </ul>
               </div>
             </div>

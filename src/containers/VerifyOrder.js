@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import '../styles/checkOrder.css';
+import {itemToOrderItem} from '../model/OrderItemModel';
+import {addOrder} from '../action/OrderAction';
+import {NETWORK_BUSY} from '../constants/Constants';
+import {submitOrder} from '../action/CartAction';
 
 class VerifyOrder extends Component {
   constructor(props) {
@@ -9,12 +13,39 @@ class VerifyOrder extends Component {
     };
   }
 
+  static async handleAddOrder(verifyCarts, totalPrice) {
+    console.log(verifyCarts, totalPrice);
+    const orderItems = itemToOrderItem(verifyCarts);
+    console.log(orderItems);
+    let orderInfo = {
+      'orderId': null,
+      'payment': totalPrice,
+      'paymentType': null,
+      'postFee': 2,
+      'createTime': null,
+      'buyerNick': null,
+      'sellerNick': null,
+      'orderItemDtoList': orderItems
+    };
+    const msg = await addOrder(orderInfo);
+    if (msg.code !== 200) {
+      alert(NETWORK_BUSY);
+    } else {
+      alert('支付成功');
+      const {verifyCarts} = this.props.location.state;
+      let itemCartIds = [];
+      verifyCarts.map((cart) => {
+        itemCartIds.push(cart.itemCartId);
+      });
+      await submitOrder(itemCartIds);
+      window.location.href = '/cart';
+    }
+  }
+
   render() {
 
     const {curUser} = this.state;
-    const {verifyCarts, totalPrice} = this.props.location.state;
-    console.log(verifyCarts);
-    console.log(totalPrice);
+    const {verifyCarts, totalPrice, totalQuantity} = this.props.location.state;
     return (
       <div className="order-header">
         <div className="header-container">
@@ -56,7 +87,7 @@ class VerifyOrder extends Component {
                       verifyCarts.map((verifyCart, index) => (
                         <div key={index}>
                           <li className="col-img">
-                            <img src={verifyCart.itemImage} alt=""/>
+                            <img src={verifyCart.itemImage} width='100' height='100' alt=""/>
                           </li>
                           <li className="col-name">
                             <a href="/">{verifyCart.itemSellPoint}</a>
@@ -66,14 +97,6 @@ class VerifyOrder extends Component {
                         </div>
                       ))
                     }
-                    {/*                    <li className="col-img">
-                      <img src="https://i1.mifile.cn/a1/pms_1537324004.08544830!30x30.jpg" alt=""/>
-                    </li>
-                    <li className="col-name">
-                      <a href="/">小米8 青春 全网通版 6GB内存 梦幻蓝 64GB</a>
-                    </li>
-                    <li className="col-price"> 1499元 x 1</li>
-                    <li className="col-total">1499元</li>*/}
                   </ul>
                 </div>
 
@@ -101,11 +124,11 @@ class VerifyOrder extends Component {
                   <ul>
                     <li>
                       <label>商品件数：</label>
-                      <span className="val">1件</span>
+                      <span className="val">{totalQuantity}件</span>
                     </li>
                     <li>
                       <label>商品总价：</label>
-                      <span className="val">1499元</span>
+                      <span className="val">{totalPrice}元</span>
                     </li>
                     <li>
                       <label>运费：</label>
@@ -113,14 +136,15 @@ class VerifyOrder extends Component {
                     </li>
                     <li className="total-price">
                       <label>应付总额：</label>
-                      <span className="val"><em>1499</em>元</span>
+                      <span className="val"><em>{totalPrice}</em>元</span>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="section-bar">
                 <div className="fr">
-                  <a href="/" className="btn">去结算</a>
+                  <button onClick={VerifyOrder.handleAddOrder.bind(this, verifyCarts, totalPrice)} className="btn">去结算
+                  </button>
                 </div>
               </div>
             </div>

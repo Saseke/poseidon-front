@@ -1,7 +1,9 @@
 import {ORDER_SERVICE_URL} from '../constants/Constants';
+import {REQUEST_TYPE} from '../model/Media';
 
 export async function addOrder(orderInfo) {
   return await fetch(`${ORDER_SERVICE_URL}`, {
+    method: REQUEST_TYPE.POST,
     headers: new Headers({
       'Content-Type': 'application/json',
     }),
@@ -12,8 +14,31 @@ export async function addOrder(orderInfo) {
     } else {
       return new Error('请求错误');
     }
-  }).then(json => {
-    return json.data;
+  })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+
+/**
+ * 查询指当前用户指定类型的订单
+ * @param buyerId 买家的id
+ * @param op 订单的类型: 0为未支付的订单,1为已经支付的订单
+ * @returns {Promise<Response>}
+ */
+export async function fetchByBuyerId(buyerId, op) {
+  return await fetch(`${ORDER_SERVICE_URL}/list/${buyerId}/${op}`, {
+    method: REQUEST_TYPE.GET,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      return new Error('请求错误');
+    }
   })
     .catch(error => {
       console.error(error);

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link,Switch,Route} from 'react-router-dom';
+import {Link, Route, Switch} from 'react-router-dom';
 
 import TopBar from '../components/TopBar';
 import MiddleBar from '../components/MiddleBar';
@@ -28,7 +28,7 @@ class Personal extends Component {
                 <div className="nav-box">
                   <h3 className="title"><strong>订单中心</strong></h3>
                   <ul className="nav-list">
-                    <li><Link to='/personal/myorders'>我的订单</Link></li>
+                    <li><Link to='/personal/orders'>我的订单</Link></li>
                     <li><a href="/">意外保</a></li>
                     <li><a href="/">团购订单</a></li>
                     <li><a href="/">评价晒单</a></li>
@@ -75,7 +75,7 @@ class Personal extends Component {
             <div className="right-box">
               <Switch>
                 <Route exact path="/personal" component={MyCenter}/>
-                <Route path="/personal/myorders" component={MyOrders}/>
+                <Route path="/personal/orders" component={MyOrders}/>
               </Switch>
             </div>
           </div>

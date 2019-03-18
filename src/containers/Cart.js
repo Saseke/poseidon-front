@@ -135,14 +135,13 @@ class Cart extends Component {
   }
 
   handleVerifyOrder = () => {
-    const {carts} = this.state;
+    const {carts, totalPrice} = this.state;
     let verifyCarts = carts.filter((cart) => cart.checked);
-
-    let totalPrice = 0;
-    verifyCarts.forEach((cart) => totalPrice += cart.price);
+    let totalQuantity = 0;
+    verifyCarts.map((verifyCart) => (totalQuantity += verifyCart.quantity));
     let path = {
       pathname: '/verify/order',
-      state: {verifyCarts, totalPrice}
+      state: {verifyCarts, totalPrice, totalQuantity}
     };
     this.props.history.push(path);
   };
