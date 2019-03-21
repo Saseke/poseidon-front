@@ -129,6 +129,11 @@
     padding:10px 0;
 }
 
+.info p{
+    font-size: 14px;
+    line-height: 42px;
+}
+
 .order-detail .order-type .info .sep{
     color: #e0e0e0;
 }
@@ -196,6 +201,12 @@
 
 .pages{
     text-align: center;
+    padding: 15px 0;
+}
+
+.pages-iconfont{
+    color: #b5b5b5;
+    font-size: 20px;
 }
 
 .numbers{

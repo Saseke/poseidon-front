@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import TopBar from '../components/TopBar';
 import MiddleBar from '../components/MiddleBar';
 import Footer from '../components/Footer';
 import '../styles/personal.css';
-import MyCenter from '../components/MyCenter';
-import MyOrders from '../components/MyOrders';
+import PersonalRouter from '../router/PersonalRouter';
 
 class Personal extends Component {
   render() {
     return (
       <div>
-        <TopBar/>
-        <MiddleBar/>
+    {/*    <TopBar/>
+        <MiddleBar/>*/}
         <div className="main-page">
 
           <div className="breadcrumbs">
@@ -73,10 +72,7 @@ class Personal extends Component {
             </div>
 
             <div className="right-box">
-              <Switch>
-                <Route exact path="/personal" component={MyCenter}/>
-                <Route path="/personal/orders" component={MyOrders}/>
-              </Switch>
+              <PersonalRouter/>
             </div>
           </div>
         </div>

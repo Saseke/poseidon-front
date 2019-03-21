@@ -9,8 +9,6 @@ import Cart from '../containers/Cart';
 import Personal from '../containers/Personal';
 import VerifyOrder from '../containers/VerifyOrder';
 import Success from '../components/Success';
-import MyCenter from '../components/MyCenter';
-import MyOrders from '../components/MyOrders';
 
 class RouteMap extends Component {
   render() {
