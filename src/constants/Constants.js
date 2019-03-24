@@ -1,5 +1,9 @@
 export const GATEWAY_URL = 'http://www.test.com:8769';
 
+export const PAGING_URL = 'http://101.7.181.145:8769';
+
+export const ORDER_PAGING_URL = `${PAGING_URL}/order`;
+
 // 商品展示服务
 export const ITEM_SERVICE = `${GATEWAY_URL}/view`;
 

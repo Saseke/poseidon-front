@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-import '../styles/mycenter.css';
+import '../styles/center.css';
 import {MemberModel} from '../model/MemberModel';
 import {fetchMemberByName} from '../action/MemberAction';
 
-class MyCenter extends Component {
+class Center extends Component {
 
   constructor(props) {
     super(props);
@@ -92,4 +92,4 @@ class MyCenter extends Component {
   }
 }
 
-export default MyCenter;
+export default Center;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class ToBeReceived extends Component{
+class Unreceived extends Component{
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class ToBeReceived extends Component{
   }
 }
 
-export default ToBeReceived;
+export default Unreceived;

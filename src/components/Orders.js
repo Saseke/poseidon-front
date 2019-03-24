@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import search from '../img/search.png';
 
-import '../styles/myOrder.css';
-import MyOrdersRouter from '../router/MyOrdersRouter';
+import '../styles/order.css';
+import OrdersRouter from '../router/OrdersRouter';
 import {OrderModel} from '../model/OrderModel';
-import {fetchByBuyerId} from '../action/OrderAction';
+import {fetchByBuyerIdAll} from '../action/OrderAction';
 
-class MyOrders extends Component {
+class Orders extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,7 @@ class MyOrders extends Component {
 
   async componentDidMount() {
     const buyerId = localStorage.getItem('buyerId');
-    let msg = await fetchByBuyerId(buyerId, 0);
+    let msg = await fetchByBuyerIdAll(buyerId, 0);
     if (msg.code === 200) {
       this.setState({
         orders: msg.data,
@@ -28,6 +28,7 @@ class MyOrders extends Component {
       alert('网络错误');
     }
   }
+
   render() {
     const {orders, fetching} = this.state;
     if (fetching) {
@@ -42,7 +43,7 @@ class MyOrders extends Component {
           <div className="more">
             <ul className="filter-list">
               <li className="first active"><Link to='/personal/orders'>全部有效订单</Link></li>
-              <li><Link to='/personal/orders/tobepaid'>待支付({orders.length})</Link></li>
+              <li><Link to='/personal/orders/tobepaid'>待支付({this.state.orders.length})</Link></li>
               <li><Link to='/personal/orders/tobereceived'>待收货</Link></li>
               <li><Link to='/personal/orders/closed'>已关闭</Link></li>
             </ul>
@@ -52,11 +53,11 @@ class MyOrders extends Component {
               <button className="search-btn"><img src={search} alt=""/></button>
             </div>
           </div>
-          <MyOrdersRouter/>
+          <OrdersRouter/>
         </div>
       </div>
     );
   }
 }
 
-export default MyOrders;
+export default Orders;
