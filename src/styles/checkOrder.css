@@ -118,11 +118,18 @@ body{
     color: #b0b0b0;
 }
 
+.goods-body{
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
 .good-list{
+    height:50px;
+}
+
+.good{
     display: flex;
     justify-content: space-between;
-    height:50px;
-    border-bottom: 1px solid #e0e0e0;
 }
 
 .good-list li{

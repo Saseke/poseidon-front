@@ -31,7 +31,6 @@ class VerifyOrder extends Component {
     if (msg.code !== 200) {
       alert(NETWORK_BUSY);
     } else {
-      alert('支付成功');
       const {verifyCarts} = this.props.location.state;
       let itemCartIds = [];
       verifyCarts.map((cart) => {
@@ -82,12 +81,13 @@ class VerifyOrder extends Component {
                 </div>
 
                 <div className="goods-body">
-                  <ul className="good-list">
-                    {
-                      verifyCarts.map((verifyCart, index) => (
-                        <div key={index}>
+
+                  {
+                    verifyCarts.map((verifyCart, index) => (
+                      <ul key={index} className="good-list">
+                        <div className="good">
                           <li className="col-img">
-                            <img src={verifyCart.itemImage} width='100' height='100' alt=""/>
+                            <img src={verifyCart.itemImage} width='40' height='40' alt=""/>
                           </li>
                           <li className="col-name">
                             <a href="/">{verifyCart.itemSellPoint}</a>
@@ -95,9 +95,9 @@ class VerifyOrder extends Component {
                           <li className="col-price"> {verifyCart.price}x {verifyCart.quantity}</li>
                           <li className="col-total">{verifyCart.price * verifyCart.quantity}</li>
                         </div>
-                      ))
-                    }
-                  </ul>
+                      </ul>
+                    ))
+                  }
                 </div>
 
 

@@ -58,6 +58,7 @@ class Cart extends Component {
       carts,
       totalPrice
     });
+
   };
 
 
@@ -227,7 +228,9 @@ class Cart extends Component {
                         <div className="col-price"> {cart.price}元</div>
                         <div className="col-num">
                           <div className="change-goods-num">
-                            <button value="-" onClick={this.handleChange('reduce', index)}>-</button>
+                            <button value="-" onBlurCapture={this.handleUpdate.bind(this, cart.itemId, cart.quantity)}
+                                    onClick={this.handleChange('reduce', index)}>-
+                            </button>
                             <input type="text" className="num" id='num' onChange={this.handleChange}
                                    value={cart.quantity}/>
                             <button value="+" onBlurCapture={this.handleUpdate.bind(this, cart.itemId, cart.quantity)}

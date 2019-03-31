@@ -1,5 +1,4 @@
-import {ORDER_SERVICE_URL} from '../constants/Constants';
-import {ORDER_PAGING_URL} from '../constants/Constants';
+import {ORDER_PAGING_URL, ORDER_SERVICE_URL} from '../constants/Constants';
 import {REQUEST_TYPE} from '../model/Media';
 
 export async function addOrder(orderInfo) {
@@ -31,7 +30,7 @@ export async function addOrder(orderInfo) {
  * @returns {Promise<Response>}
  */
 export async function fetchByBuyerId(buyerId, op, cur, size) {
-  return await fetch(`${ORDER_PAGING_URL}/list/${buyerId}/${op}/${cur}/${size}`, {
+  return await fetch(`${ORDER_SERVICE_URL}/list/${buyerId}/${op}/${cur}/${size}`, {
     method: REQUEST_TYPE.GET,
     headers: new Headers({
       'Content-Type': 'application/json',
@@ -49,7 +48,7 @@ export async function fetchByBuyerId(buyerId, op, cur, size) {
 }
 
 export async function fetchByBuyerIdAll(buyerId, op) {
-  return await fetch(`${ORDER_PAGING_URL}/list/${buyerId}/${op}`, {
+  return await fetch(`${ORDER_SERVICE_URL}/list/${buyerId}/${op}`, {
     method: REQUEST_TYPE.GET,
     headers: new Headers({
       'Content-Type': 'application/json',
