@@ -34,7 +34,7 @@ class TopBar extends Component {
             {
               curUser == null ?
                 <li><Link to="/login">登录</Link><span>|</span></li> :
-                <li><Link to="/mycenter">{curUser}</Link><span>|</span></li>
+                <li><Link to="/personal">{curUser}</Link><span>|</span></li>
             }
             <li><Link to="/register">注册</Link><span>|</span></li>
             <li><Link to="/login">消息通知</Link></li>

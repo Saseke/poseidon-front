@@ -165,6 +165,7 @@
     width: 245px;
     padding-left: 10px;
     vertical-align: middle;
+    border: 1px #c9c9c9 solid;
 }
 
 .serch-icon {
@@ -175,7 +176,6 @@
     background-color: #FFFFFF;
     border: 1px #c9c9c9 solid;
     border-left: none;
-    margin-top:2px;
 }
 
 .serch-icon img{

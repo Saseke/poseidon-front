@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+
+import 'antd/dist/antd.css';
+
 import MiddleBar from '../components/MiddleBar';
 import Carousels from '../components/Carousels';
 import Widget from '../components/Widget';

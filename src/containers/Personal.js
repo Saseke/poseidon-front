@@ -11,8 +11,8 @@ class Personal extends Component {
   render() {
     return (
       <div>
-    {/*    <TopBar/>
-        <MiddleBar/>*/}
+        <TopBar/>
+        <MiddleBar/>
         <div className="main-page">
 
           <div className="breadcrumbs">

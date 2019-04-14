@@ -4,6 +4,7 @@ import {itemToOrderItem} from '../model/OrderItemModel';
 import {addOrder} from '../action/OrderAction';
 import {NETWORK_BUSY} from '../constants/Constants';
 import {submitOrder} from '../action/CartAction';
+import UForm from './Form';
 
 class VerifyOrder extends Component {
   constructor(props) {
@@ -61,17 +62,9 @@ class VerifyOrder extends Component {
           </div>
           <div className="checkout-box">
             <div className="section">
-              <div className="section-address">
-                <div className="section-header">
-                  <h3 className="title">收货地址</h3>
-                </div>
-                <div className="address-body">
-                  <div className="address-item">
-                    <p className="iconfont">+</p>
-                    添加新地址
-                  </div>
-                </div>
-              </div>
+
+              <UForm/>
+
               <div className="section-goods">
                 <div className="section-header">
                   <h3 className="title">商品及优惠券</h3>
