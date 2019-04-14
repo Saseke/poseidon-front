@@ -28,12 +28,12 @@ class CustomizedForm extends Component{
                                     return {
                                         value: area,
                                         label: area,
-                                    }
+                                    };
                                 })
-                            }
+                            };
                         }),
-                    })
-                })
+                    });
+                });
             })
             .catch(function (error) {
                 console.log(error);
@@ -60,22 +60,22 @@ class CustomizedForm extends Component{
             <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
         ));
         return (
-            <Modal
-                visible={visible}
-                title={title}
-                okText={okText}
-                onCancel={onCancel}
-                onOk={onCreate}
-            >
-                <Form layout="horizontal">
-                    <FormItem label="姓名" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('name', {
-                            rules: [{ required: true, message: '请输入姓名！' }],
-                        })(
-                            <Input />
-                        )}
-                    </FormItem>
-                    <FormItem label="性别" {...FormItemLayout} hasFeedback>
+          <Modal
+            visible={visible}
+            title={title}
+            okText={okText}
+            onCancel={onCancel}
+            onOk={onCreate}
+          >
+              <Form layout="horizontal">
+                  <FormItem label="姓名" {...FormItemLayout} hasFeedback>
+                      {getFieldDecorator('name', {
+                          rules: [{ required: true, message: '请输入姓名！' }],
+                      })(
+                        <Input />
+                      )}
+                  </FormItem>
+                  {/*<FormItem label="性别" {...FormItemLayout} hasFeedback>
                         {getFieldDecorator('sex', {
                             rules: [{ required: true, message: '请选择性别！' }],
                         })(
@@ -84,33 +84,40 @@ class CustomizedForm extends Component{
                                 <Radio value='女'>女</Radio>
                             </Radio.Group>
                         )}
-                    </FormItem>
-                    <FormItem label="年龄" {...FormItemLayout} hasFeedback>
+                    </FormItem>*/}
+                  {/*<FormItem label="年龄" {...FormItemLayout} hasFeedback>
                         {getFieldDecorator('age', {
                             rules: [{ required: true, message: '请输入年龄！' }],
                         })(
                             <InputNumber min={0} max={199} step={1} />
                         )}
-                    </FormItem>
-                    <FormItem label="地址" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('address', {
-                            rules: [{ required: true, message: '请选择地址！' }],
-                        })(
-                            <Cascader options={options}/>
-                        )}
-                    </FormItem>
-                    <FormItem label="手机号" {...FormItemLayout} hasFeedback>
-                        {getFieldDecorator('phone', {
-                            rules: [{
-                                pattern: /^1(3|4|5|7|8)\d{9}$/, message: "手机号码格式不正确！"
-                            },{
-                                required: true, message: '请输入手机号！'
-                            }],
-                        })(
-                            <Input addonBefore={"+86"} style={{ width: '100%' }} />
-                        )}
-                    </FormItem>
-                    <FormItem label="邮箱" {...FormItemLayout} hasFeedback>
+                    </FormItem>*/}
+                  <FormItem label="地址" {...FormItemLayout} hasFeedback>
+                      {getFieldDecorator('address', {
+                          rules: [{ required: true, message: '请选择地址！' }],
+                      })(
+                        <Cascader options={options}/>
+                      )}
+                  </FormItem>
+                  <FormItem label="详细地址" {...FormItemLayout} hasFeedback>
+                      {getFieldDecorator('detailAddress', {
+                          rules: [{ required: true, message: '请输入详细地址！' }],
+                      })(
+                        <Input />
+                      )}
+                  </FormItem>
+                  <FormItem label="手机号" {...FormItemLayout} hasFeedback>
+                      {getFieldDecorator('phone', {
+                          rules: [{
+                              pattern: /^1(3|4|5|7|8)\d{9}$/, message: '手机号码格式不正确！'
+                          },{
+                              required: true, message: '请输入手机号！'
+                          }],
+                      })(
+                        <Input addonBefore={'+86'} style={{ width: '100%' }} />
+                      )}
+                  </FormItem>
+                  {/*<FormItem label="邮箱" {...FormItemLayout} hasFeedback>
                         {getFieldDecorator('email', {
                             rules: [{
                                 type: 'email', message: '邮箱格式不正确！',
@@ -120,8 +127,8 @@ class CustomizedForm extends Component{
                         })(
                             <Input />
                         )}
-                    </FormItem>
-                    <FormItem label="网址" {...FormItemLayout} hasFeedback>
+                    </FormItem>*/}
+                  {/*<FormItem label="网址" {...FormItemLayout} hasFeedback>
                         {getFieldDecorator('website', {
                             rules: [{required: true, message: '请输入网址！'}],
                         })(
@@ -132,9 +139,21 @@ class CustomizedForm extends Component{
                                 <Input/>
                             </AutoComplete>
                         )}
-                    </FormItem>
-                </Form>
-            </Modal>
+                    </FormItem>*/}
+                  <FormItem label="邮政编码" {...FormItemLayout} hasFeedback>
+                      {getFieldDecorator('postalcode', {
+                          rules: [{ required: true, message: '请输入邮政编码！' }],
+                      })(
+                        <Input />
+                      )}
+                  </FormItem>
+                  <FormItem label="地址标签" {...FormItemLayout} hasFeedback>
+                      {getFieldDecorator('addressTag')(
+                        <Input placeholder="如 家,公司.限5个字内"/>
+                      )}
+                  </FormItem>
+              </Form>
+          </Modal>
         );
     }
 }

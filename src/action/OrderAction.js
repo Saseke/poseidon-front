@@ -1,4 +1,4 @@
-import {ORDER_PAGING_URL, ORDER_SERVICE_URL} from '../constants/Constants';
+import {ORDER_SERVICE_URL} from '../constants/Constants';
 import {REQUEST_TYPE} from '../model/Media';
 
 export async function addOrder(orderInfo) {

@@ -77,6 +77,21 @@ body{
     width:150px;
 }
 
+.address{
+    padding-left: 48px;
+    text-align: left;
+    color: #b0b0b0;
+    width: 600px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    display: none;
+    margin-bottom: 20px;
+}
+
 .address-item{
     margin-bottom: 24px;
     text-align: center;

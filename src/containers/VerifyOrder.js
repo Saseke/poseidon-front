@@ -5,6 +5,7 @@ import {addOrder} from '../action/OrderAction';
 import {NETWORK_BUSY} from '../constants/Constants';
 import {submitOrder} from '../action/CartAction';
 import UForm from './Form';
+import $ from 'jquery';
 
 class VerifyOrder extends Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class VerifyOrder extends Component {
   }
 
   static async handleAddOrder(verifyCarts, totalPrice) {
+    const address = $('#new-address').text();
+    console.log(address);
     console.log(verifyCarts, totalPrice);
     const orderItems = itemToOrderItem(verifyCarts);
     console.log(orderItems);
@@ -26,7 +29,8 @@ class VerifyOrder extends Component {
       'createTime': null,
       'buyerNick': null,
       'sellerNick': null,
-      'orderItemDtoList': orderItems
+      'orderItemDtoList': orderItems,
+      'address':address
     };
     const msg = await addOrder(orderInfo);
     if (msg.code !== 200) {

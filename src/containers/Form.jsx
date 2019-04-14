@@ -4,6 +4,7 @@ import '../styles/checkOrder.css';
 import axios from 'axios';
 import Mock from 'mockjs';
 import moment from 'moment';
+import $ from 'jquery';
 
 import address from '../request/address.json';
 import CollectionCreateForm from './CustomizedForm';
@@ -43,11 +44,11 @@ export default class UForm extends Component {
                                     return {
                                         value: area,
                                         label: area,
-                                    }
+                                    };
                                 })
-                            }
+                            };
                         }),
-                    })
+                    });
                 });
             })
             .catch(function (error) {
@@ -69,7 +70,7 @@ export default class UForm extends Component {
     };
     //填充表格行
     handleCreate = () => {
-        const {dataSource, count} = this.state;
+        const {dataSource} = this.state;
         const form = this.form;
         form.validateFields((err, values) => {
             if (err) {
@@ -77,13 +78,24 @@ export default class UForm extends Component {
             }
             console.log('Received values of form: ', values);
 
-            values.address = values.address.join(" / ");
-            values.createtime = moment().format("YYYY-MM-DD hh:mm:ss");
+            let address='';
+            if (values.addressTag == undefined){
+                address = values.name + '/' + values.phone + '/' + values.address.join('-') + '/' + values.detailAddress + '/' + values.postalcode;
+            } else {
+                address = values.name + '/' + values.phone + '/' + values.address.join('-') + '/' + values.detailAddress + '/' + values.postalcode + '/' + values.addressTag;
+            }
+
+            $('#new-address').css('display', 'block');
+            $('#add-address').css('display', 'none');
+
+            values.address = values.address.join(' / ');
+            values.createtime = moment().format('YYYY-MM-DD hh:mm:ss');
 
             form.resetFields();
             this.setState({
                 visible: false,
                 dataSource: [...dataSource, values],
+                address
             });
         });
     };
@@ -100,16 +112,20 @@ export default class UForm extends Component {
                     <div className="section-header">
                         <h3 className="title">收货地址</h3>
                     </div>
-                    <div className="address-body">
+                    <div className="address-body" id="add-address">
                         <div className="address-item">
                             <p className="iconfont">+</p>
                             添加新地址
                         </div>
                     </div>
+
+                    <div className="address-body">
+                        <div className="address" id="new-address">{this.state.address}</div>
+                    </div>
                 </div>
                 <CollectionCreateForm ref={this.saveFormRef} visible={visible} onCancel={this.handleCancel}
                                         onCreate={this.handleCreate} title="新建信息" okText="创建"/>
             </div>
-        )
+        );
     }
 }
