@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Center from '../components/Center';
-import Orders from '../components/Orders';
+import Orders from '../containers/Orders';
 
 class PersonalRouter extends Component{
   render() {

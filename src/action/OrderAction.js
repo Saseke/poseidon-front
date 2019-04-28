@@ -64,3 +64,39 @@ export async function fetchByBuyerIdAll(buyerId, op) {
       console.error(error);
     });
 }
+
+export async function updateOrder(orderId, status) {
+  return await fetch(`${ORDER_SERVICE_URL}/${orderId}/${status}`, {
+    method: REQUEST_TYPE.PATCH,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      return new Error('请求错误');
+    }
+  })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+export async function statisticOrder(buyerId) {
+  return await fetch(`${ORDER_SERVICE_URL}/${buyerId}`, {
+    method: REQUEST_TYPE.GET,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      return new Error('请求错误');
+    }
+  })
+    .catch(error => {
+      console.error(error);
+    });
+}

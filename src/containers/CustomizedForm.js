@@ -109,7 +109,7 @@ class CustomizedForm extends Component{
                   <FormItem label="手机号" {...FormItemLayout} hasFeedback>
                       {getFieldDecorator('phone', {
                           rules: [{
-                              pattern: /^1(3|4|5|7|8)\d{9}$/, message: '手机号码格式不正确！'
+                              pattern: /^1([34578])\d{9}$/, message: '手机号码格式不正确！'
                           },{
                               required: true, message: '请输入手机号！'
                           }],

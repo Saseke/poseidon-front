@@ -167,7 +167,7 @@ class Cart extends Component {
                     <a href="/">注册</a>
                   </div> :
                   <div>
-                    <Link to="/">{curUser}</Link>
+                    <Link to="/personal">{curUser}</Link>
                     <span>|</span>
                     <Link to="/">注销</Link>
                   </div>

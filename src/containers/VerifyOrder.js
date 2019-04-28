@@ -6,6 +6,7 @@ import {NETWORK_BUSY} from '../constants/Constants';
 import {submitOrder} from '../action/CartAction';
 import UForm from './Form';
 import $ from 'jquery';
+import {fetchMemberByName} from '../action/MemberAction';
 
 class VerifyOrder extends Component {
   constructor(props) {
@@ -17,32 +18,38 @@ class VerifyOrder extends Component {
 
   static async handleAddOrder(verifyCarts, totalPrice) {
     const address = $('#new-address').text();
-    console.log(address);
-    console.log(verifyCarts, totalPrice);
-    const orderItems = itemToOrderItem(verifyCarts);
-    console.log(orderItems);
-    let orderInfo = {
-      'orderId': null,
-      'payment': totalPrice,
-      'paymentType': null,
-      'postFee': 2,
-      'createTime': null,
-      'buyerNick': null,
-      'sellerNick': null,
-      'orderItemDtoList': orderItems,
-      'address':address
-    };
-    const msg = await addOrder(orderInfo);
-    if (msg.code !== 200) {
-      alert(NETWORK_BUSY);
+    const userInfo = await fetchMemberByName(this.state.curUser);
+    if (userInfo.balance < totalPrice) {
+      // TODO 待优化界面
+      alert(`您当前余额为${userInfo.balance},请先充值`);
     } else {
-      const {verifyCarts} = this.props.location.state;
-      let itemCartIds = [];
-      verifyCarts.map((cart) => {
-        itemCartIds.push(cart.itemCartId);
-      });
-      await submitOrder(itemCartIds);
-      window.location.href = '/cart';
+      const orderItems = itemToOrderItem(verifyCarts);
+      let orderInfo = {
+        'orderId': null,
+        'payment': totalPrice,
+        'paymentType': null,
+        'postFee': 2,
+        'createTime': null,
+        'buyerNick': null,
+        'sellerNick': null,
+        'orderItemDtoList': orderItems,
+        'address': address,
+        'buyer_id': userInfo.memberId
+      };
+      const msg = await addOrder(orderInfo);
+      if (msg.code !== 200) {
+        alert(NETWORK_BUSY);
+      } else {
+        const {verifyCarts} = this.props.location.state;
+        let itemCartIds = [];
+        verifyCarts.map((cart) => {
+          itemCartIds.push(cart.itemCartId);
+        });
+        await submitOrder(itemCartIds);
+        alert('支付成功');
+
+        window.location.href = '/cart';
+      }
     }
   }
 

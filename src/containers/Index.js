@@ -86,6 +86,7 @@ class Index extends Component {
         </div>
       );
     }
+    alert('用户名:yoke,密码:123456');
     return (
       <div>
         <TopBar/>
@@ -155,12 +156,14 @@ class Index extends Component {
                               {
                                 item.remark === '新品' ? <div className="flag-new">新品</div> : null
                               }
-                              <img src={item.image} width="160px" height="160px" alt=""/>
-                              <h3><a href='/'>{item.name} 4GB+64GB</a></h3>
-                              <p className="item-desc">{item.sellPoint}</p>
-                              <p className="item-price">
-                                <span className="item-num">{item.price}</span>元
-                              </p>
+                              <a href={`/item/${item.itemId}`}>
+                                <img src={item.image} width="160px" height="160px" alt=""/>
+                                <h3>{item.name} 4GB+64GB</h3>
+                                <p className="item-desc">{item.sellPoint}</p>
+                                <p className="item-price">
+                                  <span className="item-num">{item.price}</span>元
+                                </p>
+                              </a>
                             </li>
                           ))
                         }

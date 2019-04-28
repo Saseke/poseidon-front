@@ -1,4 +1,4 @@
-export const GATEWAY_URL = 'http://39.100.44.172:8769';
+export const GATEWAY_URL = 'http://localhost:8769';
 
 
 // 商品展示服务

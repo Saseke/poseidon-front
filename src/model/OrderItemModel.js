@@ -11,7 +11,7 @@ export const OrderItemModel = {
 
 export function itemToOrderItem(items) {
   let ret = [];
-  items.map((item) => {
+  items.forEach((item) => {
     ret.push({
       'id': null,
       'itemId': item.itemId,
@@ -19,7 +19,8 @@ export function itemToOrderItem(items) {
       'itemPrice': item.price,
       'itemTotalPrice': item.price * item.quantity,
       'itemName': item.itemName,
-      'itemSellPoint': item.itemSellPoint
+      'itemSellPoint': item.itemSellPoint,
+      'itemImage': item.itemImage
     });
   });
   return ret;

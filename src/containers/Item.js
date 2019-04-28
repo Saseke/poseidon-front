@@ -57,6 +57,7 @@ class Item extends Component {
 
   render() {
     const {item, fetching, curUser} = this.state;
+    console.log(item)
     if (fetching) {
       return null;
     } else {
@@ -94,7 +95,7 @@ class Item extends Component {
             <div className="pro-choose-main">
               <div className="pro-view">
                 <img style={{width: '100%', height: '100%'}}
-                     src={'https://i8.mifile.cn/a1/pms_1537324004.07876883.jpg'} alt=''/>
+                     src={item.image} alt=''/>
               </div>
               <div className="pro-info">
                 <h1>{item.name}</h1>
