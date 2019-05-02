@@ -60,7 +60,7 @@ class ValidOrders extends Component{
       <div>
         {
           orders.map((order, index) => (
-            <div key={index} className="order-detail">
+            <div key={index} className="validOrder-detail">
               <div className="order-type">
                 <p className="title">等待付款</p>
                 <div className="info">

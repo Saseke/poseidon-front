@@ -41,7 +41,7 @@ class Center extends Component {
                   {
                     curUser == null ?
                       <h2 className="username">登录</h2> :
-                      <h2 className="username">{userInfo.username}</h2>
+                      <h2 className="username">{curUser}</h2>
                   }
                   <p className="tip">下午好～</p>
                   <a className="link" href="/">修改个人信息{'>'}</a>

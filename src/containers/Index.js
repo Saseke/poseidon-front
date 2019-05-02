@@ -86,7 +86,7 @@ class Index extends Component {
         </div>
       );
     }
-    alert('用户名:yoke,密码:123456');
+    // alert('用户名:yoke,密码:123456');
     return (
       <div>
         <TopBar/>

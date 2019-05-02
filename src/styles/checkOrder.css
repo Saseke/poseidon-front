@@ -148,10 +148,13 @@ body{
 }
 
 .good-list li{
-    heigth:30px;
-    line-height: 30px;
+    heigth:50px;
+    line-height: 50px;
     vertical-align: middle;
     color: #424242;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .good-list li a{

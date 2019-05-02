@@ -1,0 +1,176 @@
+body{
+  background-color: #f5f5f5;
+}
+.pay-header{
+  width: 100%;
+  height:107px;
+  font-size: 12px;
+  border-bottom: 2px solid #ff6700;
+  background: #fff;
+  color: #b0b0b0;
+}
+
+.pay-header-container{
+  width:1226px;
+  padding-top:25px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.pay-header-container .text{
+  font-size: 28px;
+  line-height: 57px;
+  font-weight: normal;
+  color: #424242;
+  padding-left: 45px;
+}
+
+.pay-header-container .user{
+  position: absolute;
+  right:0;
+  padding: 0 5px;
+  line-height: 57px;
+}
+
+.pay-header-container .user a{
+  margin:0 10px;
+}
+
+.pay-header-container a{
+  color:#757575;
+}
+
+.section{
+  width:1226px;
+  margin: 38px auto;
+  background-color: #fff;
+  padding: 0 50px;
+  color: #424242;
+}
+
+.section-order{
+  display: flex;
+}
+
+.order-info{
+  width:1046px;
+  font-size: 14px;
+  padding: 40px 0 60px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-info .order-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 36px;
+}
+
+.order-info .order-time {
+  color: #616161;
+  margin-bottom: 5px;
+  line-height: 2;
+}
+
+.order-info .order-time {
+  color: #616161;
+  margin-bottom: 5px;
+  line-height: 2;
+}
+
+.order-info .post-info {
+  color: #616161;
+  transition: height .3s ease;
+  padding-bottom: 20px;
+}
+
+.order-info .total {
+  margin-bottom: 10px;
+  color: #757575;
+}
+
+.money {
+  color: #ff6700;
+  font-size: 14px;
+}
+
+.money em {
+  font-style: normal;
+  font-size: 24px;
+}
+
+.order-info .right{
+  text-align: right;
+}
+
+.order-info .show-detail{
+  color: #757575;
+  text-decoration: none;
+  margin-right: 0;
+}
+
+.order-info .show-detail:hover{
+  color:#ff6700;
+}
+
+.section-order .icon{
+  position: relative;
+  width: 180px;
+}
+
+.section-order .icon-right {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 80px;
+  color: #83c44e;
+  text-align: center;
+  border: 2px solid #83c44e;
+  border-radius: 42px;
+  overflow: hidden;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+}
+
+.order-detail{
+  display: none;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+
+.order-detail li {
+  height: 24px;
+  line-height: 24px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.order-detail .label {
+  float: left;
+  width: 85px;
+}
+
+.order-detail .detail-content {
+  float: left;
+}
+
+.order-detail .order-num {
+  color: #ff6700;
+}
+
+@media screen and (max-width: 1226px) {
+  body {
+    width: 1226px;
+  }
+}

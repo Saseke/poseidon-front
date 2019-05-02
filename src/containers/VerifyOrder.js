@@ -5,6 +5,7 @@ import {addOrder} from '../action/OrderAction';
 import {NETWORK_BUSY} from '../constants/Constants';
 import {submitOrder} from '../action/CartAction';
 import UForm from './Form';
+import {Link} from 'react-router-dom';
 import $ from 'jquery';
 import {fetchMemberByName} from '../action/MemberAction';
 
@@ -19,41 +20,49 @@ class VerifyOrder extends Component {
   static async handleAddOrder(verifyCarts, totalPrice) {
     const address = $('#new-address').text();
     const userInfo = await fetchMemberByName(this.state.curUser);
-    if (userInfo.balance < totalPrice) {
-      // TODO 待优化界面
-      alert(`您当前余额为${userInfo.balance},请先充值`);
+    if (address == 0) {
+      alert('请添加地址!!!');
+      document.documentElement.scrollTop = document.body.scrollTop = 0;
     } else {
+      console.log(verifyCarts, totalPrice);
       const orderItems = itemToOrderItem(verifyCarts);
-      let orderInfo = {
-        'orderId': null,
-        'payment': totalPrice,
-        'paymentType': null,
-        'postFee': 2,
-        'createTime': null,
-        'buyerNick': null,
-        'sellerNick': null,
-        'orderItemDtoList': orderItems,
-        'address': address,
-        'buyer_id': userInfo.memberId
-      };
-      const msg = await addOrder(orderInfo);
-      if (msg.code !== 200) {
-        alert(NETWORK_BUSY);
+      console.log(orderItems);
+      if (userInfo.balance < totalPrice) {
+        // TODO 待优化界面
+        alert(`您当前余额为${userInfo.balance},请先充值`);
       } else {
-        const {verifyCarts} = this.props.location.state;
-        let itemCartIds = [];
-        verifyCarts.map((cart) => {
-          itemCartIds.push(cart.itemCartId);
-        });
-        await submitOrder(itemCartIds);
-        alert('支付成功');
+        const orderItems = itemToOrderItem(verifyCarts);
+        let orderInfo = {
+          'orderId': null,
+          'payment': totalPrice,
+          'paymentType': null,
+          'postFee': 2,
+          'createTime': null,
+          'buyerNick': null,
+          'sellerNick': null,
+          'orderItemDtoList': orderItems,
+          'address': address,
+          'buyer_id': userInfo.memberId
+        };
+        const msg = await addOrder(orderInfo);
+        if (msg.code !== 200) {
+          alert(NETWORK_BUSY);
+        } else {
+          const {verifyCarts} = this.props.location.state;
+          let itemCartIds = [];
+          verifyCarts.map((cart) => {
+            itemCartIds.push(cart.itemCartId);
+          });
+          await submitOrder(itemCartIds);
+          alert('支付成功');
 
-        window.location.href = '/cart';
+          window.location.href = '/paysuccess';
+        }
       }
     }
   }
 
-  render() {
+  render(){
 
     const {curUser} = this.state;
     const {verifyCarts, totalPrice, totalQuantity} = this.props.location.state;
@@ -94,10 +103,10 @@ class VerifyOrder extends Component {
                             <img src={verifyCart.itemImage} width='40' height='40' alt=""/>
                           </li>
                           <li className="col-name">
-                            <a href="/">{verifyCart.itemSellPoint}</a>
+                            <Link to="/">{verifyCart.itemSellPoint}</Link>
                           </li>
-                          <li className="col-price"> {verifyCart.price}x {verifyCart.quantity}</li>
-                          <li className="col-total">{verifyCart.price * verifyCart.quantity}</li>
+                          <li className="col-price"> {verifyCart.price}元　x {verifyCart.quantity}</li>
+                          <li className="col-total">{verifyCart.price * verifyCart.quantity}元</li>
                         </div>
                       </ul>
                     ))

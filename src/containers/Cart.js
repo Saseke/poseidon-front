@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import '../styles/cart.css';
+import $ from 'jquery';
 import Footer from '../components/Footer';
 import {deleteCart, fetchCartByUserName, updateCart} from '../action/CartAction';
 import {NETWORK_BUSY} from '../constants/Constants';
@@ -27,6 +28,9 @@ class Cart extends Component {
     this.setState({
       carts: cartsData,
       fetching: false
+    });
+    $('#goCheckout').attr({
+      'disabled': 'disabled',
     });
   }
 
@@ -109,6 +113,35 @@ class Cart extends Component {
         });
 
       }
+    }
+    let carts = [...this.state.carts];
+    let count = 0;
+    const ck = $('#goCheckout');
+    carts.forEach((cart) => {
+      if (cart.checked) {
+        count = count + 1;
+      }
+    });
+    if (count === carts.length) {
+      this.setState({
+        multiChecked: true
+      });
+    }
+    if (count !== 0) {
+      ck.removeAttr('disabled');
+      ck.css({
+        'background': '#ff6700',
+        'border-color': '#ff6700',
+        'color': '#fff'
+      });
+    }
+    if (count === 0) {
+      ck.attr({'disabled': 'disabled'});
+      ck.css({
+        'background': '#e0e0e0',
+        'border-color': '#e0e0e0',
+        'color': '#b0b0b0'
+      });
     }
   };
 
@@ -239,7 +272,7 @@ class Cart extends Component {
                           </div>
                         </div>
                         {/*需要动态变更*/}
-                        <div className="col-total"> {cart.price}元</div>
+                        <div className="col-total"> {cart.price * cart.quantity}元</div>
                         <div className="col-action">
                           <p className="delete"
                              onClick={this.handleDelete.bind(this, cart.itemCartId, cart.quantity)}>×</p>
@@ -259,7 +292,7 @@ class Cart extends Component {
                   <div className="total-price">合计：
                     <em id="cartTotalPrice">{totalPrice}</em>
                     元
-                    <button onClick={this.handleVerifyOrder} className="btn-primary" id="goCheckout">去结算</button>
+                    <button onClick={this.handleVerifyOrder} className="cart-btn-primary" id="goCheckout">去结算</button>
                   </div>
                 </div>
               </div>

@@ -79,7 +79,7 @@ export default class UForm extends Component {
             console.log('Received values of form: ', values);
 
             let address='';
-            if (values.addressTag == undefined){
+            if (values.addressTag === undefined){
                 address = values.name + '/' + values.phone + '/' + values.address.join('-') + '/' + values.detailAddress + '/' + values.postalcode;
             } else {
                 address = values.name + '/' + values.phone + '/' + values.address.join('-') + '/' + values.detailAddress + '/' + values.postalcode + '/' + values.addressTag;
