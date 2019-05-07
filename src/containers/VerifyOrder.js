@@ -17,6 +17,10 @@ class VerifyOrder extends Component {
     };
   }
 
+  back(){
+    window.location.href = '/cart';
+  }
+
   static async handleAddOrder(verifyCarts, totalPrice) {
     const address = $('#new-address').text();
     const userInfo = await fetchMemberByName(this.state.curUser);
@@ -31,7 +35,7 @@ class VerifyOrder extends Component {
         // TODO 待优化界面
         alert(`您当前余额为${userInfo.balance},请先充值`);
       } else {
-        const orderItems = itemToOrderItem(verifyCarts);
+        /*const orderItems = itemToOrderItem(verifyCarts);
         let orderInfo = {
           'orderId': null,
           'payment': totalPrice,
@@ -55,9 +59,9 @@ class VerifyOrder extends Component {
           });
           await submitOrder(itemCartIds);
           alert('支付成功');
+        }*/
 
-          window.location.href = '/paysuccess';
-        }
+        window.location.href = '/submitorder';
       }
     }
   }
@@ -156,7 +160,9 @@ class VerifyOrder extends Component {
               </div>
               <div className="section-bar">
                 <div className="fr">
-                  <button onClick={VerifyOrder.handleAddOrder.bind(this, verifyCarts, totalPrice)} className="btn">去结算
+                  <button onClick={this.back} className="btn-return">返回购物车
+                  </button>
+                  <button onClick={VerifyOrder.handleAddOrder.bind(this, verifyCarts, totalPrice)} className="btn">立即下单
                   </button>
                 </div>
               </div>

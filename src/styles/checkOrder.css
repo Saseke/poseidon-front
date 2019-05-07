@@ -260,3 +260,20 @@ body{
     margin-left: 89%;
 }
 
+.section-bar .fr .btn-return{
+    vertical-align: top;
+    display: inline-block;
+    width: 158px;
+    height: 38px;
+    background: #fff;
+    color: rgba(0,0,0,0.27);
+    padding: 0;
+    border: 1px solid #b0b0b0;
+    font-size: 14px;
+    line-height: 38px;
+    text-align: center;
+    margin-left: 89%;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+

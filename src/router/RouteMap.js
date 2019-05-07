@@ -10,6 +10,7 @@ import Personal from '../containers/Personal';
 import VerifyOrder from '../containers/VerifyOrder';
 import Success from '../components/Success';
 import PaySuccess from '../containers/PaySuccess';
+import SubmitOrder from '../containers/SubmitOrder';
 
 class RouteMap extends Component {
   render() {
@@ -27,6 +28,7 @@ class RouteMap extends Component {
             <Route path="/success" component={Success}/>
             <Route path="/verify/order" component={VerifyOrder}/>
             <Route path="/paysuccess" component={PaySuccess}/>
+            <Route path="/submitorder" component={SubmitOrder}/>
           </Switch>
         </div>
       </BrowserRouter>
