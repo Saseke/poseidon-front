@@ -9,6 +9,7 @@ import Cart from '../containers/Cart';
 import Personal from '../containers/Personal';
 import VerifyOrder from '../containers/VerifyOrder';
 import Success from '../components/Success';
+import Orders from '../containers/Orders';
 
 class RouteMap extends Component {
   render() {
@@ -25,6 +26,8 @@ class RouteMap extends Component {
             <Route path="/personal" component={Personal}/>
             <Route path="/success" component={Success}/>
             <Route path="/verify/order" component={VerifyOrder}/>
+            {/*<Route exact path="/personal" component={Center}/>*/}
+            <Route path="/personal/orders" component={Orders}/>
           </Switch>
         </div>
       </BrowserRouter>

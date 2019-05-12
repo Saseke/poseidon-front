@@ -1,5 +1,5 @@
-export const GATEWAY_URL = 'http://localhost:8769';
-
+export const GATEWAY_URL = 'http://39.100.44.172:8769';
+export const GATEWAY_TEST_URL = 'http://localhost:8769';
 
 // 商品展示服务
 export const ITEM_SERVICE = `${GATEWAY_URL}/view`;
@@ -35,7 +35,7 @@ export const MEMBER_SERVICE = `${GATEWAY_URL}/member`;
 export const AUTH_SERVICE_URL = `${GATEWAY_URL}/auth`;
 
 // order service
-export const ORDER_SERVICE_URL = `${GATEWAY_URL}/order`;
+export const ORDER_SERVICE_URL = `${GATEWAY_TEST_URL}/order`;
 
 // 各种错误的信息
 export const NETWORK_BUSY = '网络繁忙,请重试';

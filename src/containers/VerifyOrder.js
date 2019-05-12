@@ -3,66 +3,54 @@ import '../styles/checkOrder.css';
 import {itemToOrderItem} from '../model/OrderItemModel';
 import {addOrder} from '../action/OrderAction';
 import {NETWORK_BUSY} from '../constants/Constants';
-import {submitOrder} from '../action/CartAction';
 import UForm from './Form';
 import $ from 'jquery';
 import {fetchMemberByName} from '../action/MemberAction';
+import {clean} from '../action/CartAction';
 
 class VerifyOrder extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      curUser: localStorage.getItem('curUser'),
-    };
-  }
 
   static async handleAddOrder(verifyCarts, totalPrice) {
     const address = $('#new-address').text();
-    const userInfo = await fetchMemberByName(this.state.curUser);
-    if (userInfo.balance < totalPrice) {
-      // TODO 待优化界面
-      alert(`您当前余额为${userInfo.balance},请先充值`);
+    console.log(address);
+    const userInfo = await fetchMemberByName(localStorage.getItem('curUser'));
+    const orderItems = itemToOrderItem(verifyCarts);
+    let orderInfo = {
+      'orderId': null,
+      'payment': totalPrice,
+      'paymentType': null,
+      'postFee': 2,
+      'createTime': null,
+      'buyerNick': null,
+      'sellerNick': null,
+      'orderItemDtoList': orderItems,
+      'address': address,
+      'buyerId': userInfo.memberId
+    };
+    const msg = await addOrder(orderInfo);
+    if (msg.code !== 200) {
+      alert(NETWORK_BUSY);
     } else {
-      const orderItems = itemToOrderItem(verifyCarts);
-      let orderInfo = {
-        'orderId': null,
-        'payment': totalPrice,
-        'paymentType': null,
-        'postFee': 2,
-        'createTime': null,
-        'buyerNick': null,
-        'sellerNick': null,
-        'orderItemDtoList': orderItems,
-        'address': address,
-        'buyer_id': userInfo.memberId
-      };
-      const msg = await addOrder(orderInfo);
-      if (msg.code !== 200) {
-        alert(NETWORK_BUSY);
-      } else {
-        const {verifyCarts} = this.props.location.state;
-        let itemCartIds = [];
-        verifyCarts.map((cart) => {
-          itemCartIds.push(cart.itemCartId);
-        });
-        await submitOrder(itemCartIds);
-        alert('支付成功');
-
-        window.location.href = '/cart';
-      }
+      const {verifyCarts} = this.props.location.state;
+      let itemCartIds = [];
+      verifyCarts.map((cart) => {
+        itemCartIds.push(cart.itemCartId);
+      });
+      await clean(itemCartIds);
     }
   }
 
   render() {
 
-    const {curUser} = this.state;
+    const curUser = localStorage.getItem('curUser');
     const {verifyCarts, totalPrice, totalQuantity} = this.props.location.state;
     return (
       <div className="order-header">
         <div className="header-container">
           <a href="/"><img src="https://s01.mifile.cn/i/logo-footer.png?v2" alt=''/></a>
           <div className="text">确认订单</div>
-          <div className="operation"><a href="/">{curUser}</a><span>|</span><a href="/">我的订单</a></div>
+          <div className="operation"><a href="/">{curUser}</a><span>|</span><a href={'/personal/orders/-1'}>我的订单</a>
+          </div>
         </div>
         <div className="page-main">
           <div className="post-tips">

@@ -27,7 +27,7 @@ class Personal extends Component {
                 <div className="nav-box">
                   <h3 className="title"><strong>订单中心</strong></h3>
                   <ul className="nav-list">
-                    <li><Link to='/personal/orders'>我的订单</Link></li>
+                    <li><Link to='/personal/orders/-1'>我的订单</Link></li>
                     <li><a href="/">意外保</a></li>
                     <li><a href="/">团购订单</a></li>
                     <li><a href="/">评价晒单</a></li>
