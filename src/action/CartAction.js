@@ -74,7 +74,7 @@ export async function updateCart(curUser, itemId, quantity) {
   });
 }
 
-export async function submitOrder(itemCartIds) {
+export async function clean(itemCartIds) {
   return await fetch(`${WEB_CART_SERVICE}`, {
     method: REQUEST_TYPE.PATCH,
     headers: new Headers({

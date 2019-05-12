@@ -2,29 +2,47 @@ import React, {Component} from 'react';
 import {OrderModel} from '../model/OrderModel';
 import {fetchByBuyerId} from '../action/OrderAction';
 
-class Unpaid extends Component {
+class Order extends Component {
   constructor(props) {
     super(props);
     this.state = {
       orders: [OrderModel],
-      current: 1,
-      pages:null,
-      fetching: true
+      curPage: 1,
+      pages: null,
+      fetching: true,
+      op: -1
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
+  async UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log(this.state);
+    if (nextProps.match.params.op !== this.props.match.params.op) {
+      const buyerId = localStorage.getItem('buyerId');
+      let msg = await fetchByBuyerId(buyerId, nextProps.match.params.op, this.state.curPage, 3);
+      if (msg.code === 200) {
+        this.setState({
+          orders: msg.data.records,
+          curPage: msg.data.current,
+          pages: msg.data.pages,
+          fetching: false,
+        });
+      } else {
+        alert('网络错误');
+      }
+    }
+  }
+
   async componentDidMount() {
     const buyerId = localStorage.getItem('buyerId');
-    let cur = this.state.current;
-    let msg = await fetchByBuyerId(buyerId, 0, cur, 3);
+    const {op, curPage} = this.state;
+    let msg = await fetchByBuyerId(buyerId, op, curPage, 3);
     if (msg.code === 200) {
       this.setState({
         orders: msg.data.records,
-        current: msg.data.current,
+        curPage: msg.data.current,
         pages: msg.data.pages,
         fetching: false,
-        buyerId
       });
     } else {
       alert('网络错误');
@@ -32,19 +50,21 @@ class Unpaid extends Component {
   }
 
   handleChange = (operation, cur) => async event => {
-    if (operation === 'add' && cur < this.state.pages) {
+    const {pages, op} = this.state;
+    const buyerId = localStorage.getItem('buyerId');
+    if (operation === 'add' && cur < pages) {
       cur++;
     } else if (operation === 'reduce' && cur > 1) {
       cur--;
     }
     this.setState({
-      current:cur
+      curPage: cur
     });
-    let msg = await fetchByBuyerId(this.state.buyerId, 0, cur, 3);
+    let msg = await fetchByBuyerId(buyerId, op, cur, 3);
     if (msg.code === 200) {
       this.setState({
         orders: msg.data.records,
-        current: msg.data.current,
+        curPage: msg.data.current,
       });
     } else {
       alert('网络错误');
@@ -52,9 +72,12 @@ class Unpaid extends Component {
   };
 
   render() {
-    const {orders, fetching} = this.state;
+    const {orders, fetching, curPage} = this.state;
     if (fetching) {
       return null;
+    }
+    if (orders.length === 0) {
+      return <div><p className="empty">当前没有相关订单信息。</p></div>;
     }
     return (
       <div>
@@ -62,13 +85,23 @@ class Unpaid extends Component {
           orders.map((order, index) => (
             <div key={index} className="order-detail">
               <div className="order-type">
-                <p className="title">等待付款</p>
+                <p className="title">
+                  {
+                    order.status === 0 ? '等待付款' : order.status === 1 ? '待收货' : '已关闭'
+                  }
+                </p>
                 <div className="info">
                   <p>{order.createTime}<span className="sep">|</span> {order.buyerNick}<span className="sep"><span
                     className="sep">|</span></span> 订单号：{order.orderId}<span className="sep">|</span> 在线支付 </p>
-                  <p>应付金额：<span
-                    className="price">{order.payment}</span>元
-                  </p>
+                  {
+                    order.status === 0 ?
+                      <p>应付金额：<span
+                        className="price">{order.payment}</span>元
+                      </p> :
+                      <p>支付金额：<span
+                        className="price">{order.payment}</span>元
+                      </p>
+                  }
                 </div>
               </div>
               <div className="order-item">
@@ -91,7 +124,12 @@ class Unpaid extends Component {
                   }
                 </div>
                 <div className="action">
-                  <a className="btn btn-small btn-primary" href="/">立即支付</a>
+                  {
+                    order.status === 0 ?
+                      <a className="btn btn-small btn-primary" href={'/personal/orders/-1'}>立即支付</a>
+                      :
+                      null
+                  }
                   <a className="btn btn-small btn-line-gray" href="/">订单详情</a>
                 </div>
               </div>
@@ -100,14 +138,14 @@ class Unpaid extends Component {
         }
         <div className="pages">
           <span className="numbers first"><span className="pages-iconfont"
-                                                onClick={this.handleChange('reduce',this.state.current)}>{'<'}</span></span>
-          <span className="numbers current">{this.state.current}</span>
+                                                onClick={this.handleChange('reduce', curPage)}>{'<'}</span></span>
+          <span className="numbers current">{curPage}</span>
           <span className="numbers last"><span className="pages-iconfont"
-                                               onClick={this.handleChange('add', this.state.current)}>{'>'}</span></span>
+                                               onClick={this.handleChange('add', curPage)}>{'>'}</span></span>
         </div>
       </div>
     );
   }
 }
 
-export default Unpaid;
+export default Order;
