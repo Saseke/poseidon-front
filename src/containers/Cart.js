@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import {deleteCart, fetchCartByUserName, updateCart} from '../action/CartAction';
 import {NETWORK_BUSY} from '../constants/Constants';
 import {CartModel} from '../model/CartModel';
+import {fetchRecommendItems} from '../action/EsAction';
 
 
 class Cart extends Component {
@@ -17,17 +18,20 @@ class Cart extends Component {
       count: 0,
       totalPrice: 0,
       fetching: true,
-      multiChecked: false
+      multiChecked: false,
+      recommendItems: []
     };
   }
 
   async componentDidMount() {
     const {curUser} = this.state;
     const cartsData = await fetchCartByUserName(curUser);
-    console.log(cartsData);
+    const itemIds = cartsData.map(cart => cart.itemId);
+    const msg = await fetchRecommendItems(itemIds, 1, 10);
     this.setState({
       carts: cartsData,
-      fetching: false
+      fetching: false,
+      recommendItems: msg.data.content
     });
     $('#goCheckout').attr({
       'disabled': 'disabled',
@@ -62,7 +66,6 @@ class Cart extends Component {
       carts,
       totalPrice
     });
-
   };
 
 
@@ -181,7 +184,7 @@ class Cart extends Component {
   };
 
   render() {
-    const {curUser, carts, count, totalPrice, fetching, multiChecked} = this.state;
+    const {curUser, carts, count, totalPrice, fetching, multiChecked, recommendItems} = this.state;
     if (fetching) {
       return null;
     }
@@ -302,7 +305,27 @@ class Cart extends Component {
           <span>为您推荐</span>
         </h2>
         <div className="recommend">
-          <ul>
+          {
+            recommendItems.map((item, index) => (
+              <ul key={index}>
+                <li className="recommend-list">
+                  <dl>
+                    <dt>
+                      <a href="/">
+                        <img src={item.image} alt=""/>
+                      </a>
+                    </dt>
+                    <dd className="recommend-name">
+                      <a href="/"> {item.name}</a>
+                    </dd>
+                    <dd className="recommend-price">{item.price}元</dd>
+                    <dd className="addToCar"><a href="/">加入购物车</a></dd>
+                  </dl>
+                </li>
+              </ul>
+            ))
+          }
+          {/*          <ul>
             <li className="recommend-list">
               <dl>
                 <dt>
@@ -318,7 +341,7 @@ class Cart extends Component {
                 <dd className="addToCar"><a href="/">加入购物车</a></dd>
               </dl>
             </li>
-          </ul>
+          </ul>*/}
         </div>
         <Footer/>
       </div>

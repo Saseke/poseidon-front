@@ -13,9 +13,9 @@ class SubmitOrder extends Component {
     };
   }
 
-  aford = () =>{
+  aford = () => {
     window.location.href = '/paysuccess';
-  }
+  };
 
   showdetail = () => {
     if (this.state.isshow) {
@@ -53,7 +53,7 @@ class SubmitOrder extends Component {
               <div className="order-info">
                 <div>
                   <h2 className="order-title">订单提交成功！去付款咯～</h2>
-                  <p className="order-time"></p>
+                  <p className="order-time"/>
                   <p className="order-time">请在24小时0分内完成支付, 超时后将取消订单</p>
                   <p className="post-info" id="post-info">
                     收货信息：徐瑞智 134****8507 &nbsp;&nbsp;
