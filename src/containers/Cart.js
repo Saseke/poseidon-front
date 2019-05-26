@@ -305,10 +305,10 @@ class Cart extends Component {
           <span>为您推荐</span>
         </h2>
         <div className="recommend">
+          <ul >
           {
             recommendItems.map((item, index) => (
-              <ul key={index}>
-                <li className="recommend-list">
+                <li key={index} className="recommend-list">
                   <dl>
                     <dt>
                       <a href="/">
@@ -322,9 +322,9 @@ class Cart extends Component {
                     <dd className="addToCar"><a href="/">加入购物车</a></dd>
                   </dl>
                 </li>
-              </ul>
             ))
           }
+          </ul>
           {/*          <ul>
             <li className="recommend-list">
               <dl>

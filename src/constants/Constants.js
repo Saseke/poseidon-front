@@ -1,4 +1,4 @@
-export const GATEWAY_URL = 'http://localhost:8769';
+export const GATEWAY_URL = 'http://www.test.com:8769';
 
 export const GATEWAY_TEST_URL = 'http://localhost:8769';
 
