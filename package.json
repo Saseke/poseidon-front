@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.12.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.11.0",
     "bootstrap": "^4.2.1",
     "jquery": "^3.3.1",
